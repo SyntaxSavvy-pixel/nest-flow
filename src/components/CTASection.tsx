@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import birdMascot from "@/assets/bird-hero.png";
+import ScrollReveal from "./ScrollReveal";
 
 const CTASection = () => {
   return (
@@ -12,30 +13,38 @@ const CTASection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="mb-8">
-            <img 
-              src={birdMascot} 
-              alt="TabKeep bird mascot" 
-              className="w-32 h-32 mx-auto animate-float-slow object-contain"
-            />
-          </div>
+          <ScrollReveal direction="none">
+            <div className="mb-8">
+              <img 
+                src={birdMascot} 
+                alt="TabKeep bird mascot" 
+                className="w-32 h-32 mx-auto animate-float-slow object-contain"
+              />
+            </div>
+          </ScrollReveal>
           
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Ready for a calmer browser?
-          </h2>
+          <ScrollReveal delay={0.1}>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              Ready for a calmer browser?
+            </h2>
+          </ScrollReveal>
           
-          <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
-            Join thousands who've found peace with their tabs. It takes 10 seconds to start.
-          </p>
+          <ScrollReveal delay={0.2}>
+            <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
+              Join thousands who've found peace with their tabs. It takes 10 seconds to start.
+            </p>
+          </ScrollReveal>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg">
-              Add to Chrome — Free
-            </Button>
-            <Button variant="outline" size="lg">
-              Other Browsers
-            </Button>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="hero" size="lg">
+                Add to Chrome — Free
+              </Button>
+              <Button variant="outline" size="lg">
+                Other Browsers
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

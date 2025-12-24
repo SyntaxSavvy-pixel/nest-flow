@@ -1,3 +1,5 @@
+import StaggerContainer, { StaggerItem } from "./StaggerContainer";
+
 const quotes = [
   {
     text: "Clarity is a form of productivity.",
@@ -18,12 +20,9 @@ const QuotesSection = () => {
     <section className="py-20 md:py-28 bg-cream-dark">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.2}>
             {quotes.map((quote, index) => (
-              <div 
-                key={index}
-                className="text-center p-6"
-              >
+              <StaggerItem key={index} className="text-center p-6">
                 <blockquote className="font-display text-xl md:text-2xl text-foreground leading-relaxed italic">
                   "{quote.text.split(quote.emphasis).map((part, i, arr) => (
                     <span key={i}>
@@ -34,9 +33,9 @@ const QuotesSection = () => {
                     </span>
                   ))}"
                 </blockquote>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>
