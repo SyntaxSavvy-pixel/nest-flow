@@ -22,10 +22,10 @@ const Header = () => {
         
         <div className="flex items-center gap-3">
           <a 
-            href="#download" 
+            href="/auth" 
             className="inline-flex items-center justify-center h-10 px-5 rounded-xl font-semibold gradient-primary text-primary-foreground shadow-soft hover:shadow-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            Get Extension
+            Get Started
           </a>
         </div>
       </div>
