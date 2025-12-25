@@ -54,12 +54,15 @@ const HeroSection = () => {
             className="flex justify-center lg:justify-end animate-scale-in"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-teal/10 rounded-full blur-3xl scale-90 -z-10" />
+            <div className="relative group">
+              {/* Glow effect behind bird */}
+              <div className="absolute inset-0 bg-gradient-to-br from-teal/20 via-primary/10 to-amber/20 rounded-full blur-3xl scale-110 -z-10 group-hover:scale-125 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-teal/5 rounded-full blur-2xl scale-75 -z-10 animate-pulse" />
               <img 
                 src={birdMascot} 
                 alt="TabKeep bird mascot holding a basket of tabs" 
-                className="relative w-80 md:w-96 lg:w-[450px] animate-float-slow drop-shadow-2xl"
+                className="relative w-80 md:w-96 lg:w-[450px] animate-float-slow drop-shadow-[0_20px_50px_rgba(0,128,128,0.3)] hover:drop-shadow-[0_30px_60px_rgba(0,128,128,0.4)] transition-all duration-500"
+                style={{ filter: "contrast(1.02) saturate(1.1)" }}
               />
             </div>
           </div>
