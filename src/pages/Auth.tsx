@@ -125,14 +125,27 @@ const Auth = () => {
             </a>
           </motion.div>
 
-          <motion.img
-            src={birdHero}
-            alt="TabKeep bird mascot"
-            className="w-64 h-64 object-contain mb-8 drop-shadow-2xl"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          />
+          <motion.div className="relative mb-8">
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-background/10 rounded-full blur-3xl scale-110" />
+            <motion.img
+              src={birdHero}
+              alt="TabKeep bird mascot"
+              className="relative w-64 h-64 object-contain drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
+              style={{ filter: "contrast(1.02) saturate(1.1)" }}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: [0, -8, 0]
+              }}
+              transition={{ 
+                opacity: { duration: 0.6, delay: 0.2 },
+                scale: { duration: 0.6, delay: 0.2 },
+                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }
+              }}
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
