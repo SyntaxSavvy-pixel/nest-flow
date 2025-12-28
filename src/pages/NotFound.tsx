@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
-import birdMascot from "@/assets/bird-hero.png";
+import birdMascot from "@/assets/bird-hero.gif";
 
 const NotFound = () => {
   const location = useLocation();
