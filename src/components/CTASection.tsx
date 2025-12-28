@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import birdMascot from "@/assets/bird-hero.png";
+import birdMascot from "@/assets/bird-hero.gif";
 import ScrollReveal from "./ScrollReveal";
 
 const CTASection = () => {
