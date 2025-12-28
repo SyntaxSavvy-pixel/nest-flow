@@ -64,7 +64,6 @@ const HeroSection = () => {
               <video 
                 src={birdMascotVideo} 
                 autoPlay
-                loop
                 muted
                 playsInline
                 className="relative w-80 md:w-96 lg:w-[450px] drop-shadow-[0_25px_60px_rgba(0,128,128,0.35)] group-hover:drop-shadow-[0_35px_70px_rgba(0,128,128,0.5)] group-hover:scale-105 transition-all duration-500"
