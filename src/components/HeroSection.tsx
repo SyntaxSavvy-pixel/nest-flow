@@ -54,16 +54,23 @@ const HeroSection = () => {
             className="flex justify-center lg:justify-end animate-scale-in"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="relative group">
-              {/* Glow effect behind bird */}
-              <div className="absolute inset-0 bg-gradient-to-br from-teal/20 via-primary/10 to-amber/20 rounded-full blur-3xl scale-110 -z-10 group-hover:scale-125 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-teal/5 rounded-full blur-2xl scale-75 -z-10 animate-pulse" />
+            <div className="relative group cursor-pointer">
+              {/* Animated glow rings */}
+              <div className="absolute inset-0 bg-gradient-to-br from-teal/30 via-primary/20 to-amber/30 rounded-full blur-3xl scale-125 -z-10 animate-pulse-glow" />
+              <div className="absolute inset-0 bg-teal/10 rounded-full blur-2xl scale-90 -z-10 animate-pulse" style={{ animationDelay: "0.5s" }} />
+              <div className="absolute -inset-4 bg-gradient-radial from-amber/10 to-transparent rounded-full blur-xl -z-10 animate-pulse-glow" style={{ animationDelay: "1s" }} />
+              
+              {/* Main bird image with combined animations */}
               <img 
                 src={birdMascot} 
                 alt="TabKeep bird mascot holding a basket of tabs" 
-                className="relative w-80 md:w-96 lg:w-[450px] animate-float-slow drop-shadow-[0_20px_50px_rgba(0,128,128,0.3)] hover:drop-shadow-[0_30px_60px_rgba(0,128,128,0.4)] transition-all duration-500"
-                style={{ filter: "contrast(1.02) saturate(1.1)" }}
+                className="relative w-80 md:w-96 lg:w-[450px] animate-bounce-gentle drop-shadow-[0_25px_60px_rgba(0,128,128,0.35)] group-hover:drop-shadow-[0_35px_70px_rgba(0,128,128,0.5)] group-hover:scale-105 transition-all duration-500"
               />
+              
+              {/* Floating sparkle effects */}
+              <div className="absolute top-10 right-10 w-3 h-3 bg-amber rounded-full animate-float opacity-60" style={{ animationDelay: "0.2s" }} />
+              <div className="absolute top-20 left-5 w-2 h-2 bg-teal-light rounded-full animate-float opacity-50" style={{ animationDelay: "0.8s" }} />
+              <div className="absolute bottom-20 right-5 w-2 h-2 bg-primary rounded-full animate-float opacity-40" style={{ animationDelay: "1.2s" }} />
             </div>
           </div>
         </div>
