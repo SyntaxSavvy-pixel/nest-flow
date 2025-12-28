@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import birdMascot from "@/assets/bird-hero.gif";
+import birdMascotVideo from "@/assets/bird-hero.mp4";
 
 const HeroSection = () => {
   return (
@@ -60,10 +60,13 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-teal/10 rounded-full blur-2xl scale-90 -z-10 animate-pulse" style={{ animationDelay: "0.5s" }} />
               <div className="absolute -inset-4 bg-gradient-radial from-amber/10 to-transparent rounded-full blur-xl -z-10 animate-pulse-glow" style={{ animationDelay: "1s" }} />
               
-              {/* Animated bird GIF */}
-              <img 
-                src={birdMascot} 
-                alt="TabKeep bird mascot waving hello" 
+              {/* Animated bird video */}
+              <video 
+                src={birdMascotVideo} 
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="relative w-80 md:w-96 lg:w-[450px] drop-shadow-[0_25px_60px_rgba(0,128,128,0.35)] group-hover:drop-shadow-[0_35px_70px_rgba(0,128,128,0.5)] group-hover:scale-105 transition-all duration-500"
               />
               
