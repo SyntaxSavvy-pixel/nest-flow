@@ -3,7 +3,7 @@ import birdMascotVideo from "@/assets/bird-hero.mp4";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden gradient-hero">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden bg-white dark:bg-white">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 bg-teal/5 rounded-full blur-3xl" />
