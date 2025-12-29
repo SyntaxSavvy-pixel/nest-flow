@@ -2,6 +2,8 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "./ScrollReveal";
 import StaggerContainer, { StaggerItem } from "./StaggerContainer";
+import FloatingLeaves from "./FloatingLeaves";
+import WindLines from "./WindLines";
 
 const plans = [
   {
@@ -52,7 +54,9 @@ const plans = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-24 md:py-32 bg-cream-dark">
+    <section id="pricing" className="py-24 md:py-32 bg-cream-dark relative overflow-hidden">
+      <FloatingLeaves count={3} />
+      <WindLines variant="curved" />
       <div className="container mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
