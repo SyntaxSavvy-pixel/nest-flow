@@ -2,6 +2,8 @@ import { MousePointer, Feather, FolderOpen } from "lucide-react";
 import birdFlying from "@/assets/bird-flying.png";
 import nestWithTabs from "@/assets/nest-with-tabs.png";
 import ScrollReveal from "./ScrollReveal";
+import FloatingLeaves from "./FloatingLeaves";
+import WindLines from "./WindLines";
 
 const steps = [
   {
@@ -29,7 +31,9 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-background">
+    <section id="how-it-works" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <FloatingLeaves count={5} />
+      <WindLines variant="mixed" />
       <div className="container mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">

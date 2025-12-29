@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import birdMascot from "@/assets/bird-hero.gif";
 import ScrollReveal from "./ScrollReveal";
+import FloatingLeaves from "./FloatingLeaves";
+import WindLines from "./WindLines";
 
 const CTASection = () => {
   return (
     <section id="download" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <FloatingLeaves count={6} />
+      <WindLines variant="mixed" />
+      
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-teal/5 rounded-full blur-3xl -translate-y-1/2" />

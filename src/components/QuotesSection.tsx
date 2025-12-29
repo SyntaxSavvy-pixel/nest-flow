@@ -1,4 +1,5 @@
 import StaggerContainer, { StaggerItem } from "./StaggerContainer";
+import WindLines from "./WindLines";
 
 const quotes = [
   {
@@ -17,7 +18,8 @@ const quotes = [
 
 const QuotesSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-cream-dark">
+    <section className="py-20 md:py-28 bg-cream-dark relative overflow-hidden">
+      <WindLines variant="curved" />
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.2}>

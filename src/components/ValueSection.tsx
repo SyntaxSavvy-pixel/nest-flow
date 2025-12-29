@@ -1,6 +1,8 @@
 import { Heart, Search, Smile } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import StaggerContainer, { StaggerItem } from "./StaggerContainer";
+import FloatingLeaves from "./FloatingLeaves";
+import WindLines from "./WindLines";
 
 const values = [
   {
@@ -22,7 +24,9 @@ const values = [
 
 const ValueSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <FloatingLeaves count={4} />
+      <WindLines variant="horizontal" />
       <div className="container mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
