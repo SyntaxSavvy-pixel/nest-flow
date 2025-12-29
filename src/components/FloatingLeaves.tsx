@@ -39,23 +39,26 @@ const Leaf = ({ delay = 0, duration = 8, startX = 0, startY = -20, size = 40, ro
   );
 };
 
+// Props interface moved to component definition
+
 interface FloatingLeavesProps {
   count?: number;
   className?: string;
+  overlay?: boolean;
 }
 
-const FloatingLeaves = ({ count = 6, className = "" }: FloatingLeavesProps) => {
+const FloatingLeaves = ({ count = 6, className = "", overlay = false }: FloatingLeavesProps) => {
   const leaves = Array.from({ length: count }, (_, i) => ({
     delay: i * 1.5,
     duration: 10 + Math.random() * 5,
     startX: 10 + (i * 80 / count) + Math.random() * 10,
     startY: -30 - Math.random() * 50,
-    size: 30 + Math.random() * 20,
+    size: 45 + Math.random() * 35,
     rotation: Math.random() * 360,
   }));
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${overlay ? 'z-20' : 'z-0'} ${className}`}>
       {leaves.map((leaf, i) => (
         <Leaf key={i} {...leaf} />
       ))}
