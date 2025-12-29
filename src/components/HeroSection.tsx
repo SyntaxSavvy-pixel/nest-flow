@@ -4,11 +4,6 @@ import birdMascotVideo from "@/assets/bird-hero.mp4";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden bg-white dark:bg-white">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-teal/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber/10 rounded-full blur-3xl" />
-      </div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -61,13 +56,8 @@ const HeroSection = () => {
                 autoPlay
                 muted
                 playsInline
-                className="relative w-80 md:w-96 lg:w-[450px] drop-shadow-[0_25px_60px_rgba(0,128,128,0.35)] group-hover:drop-shadow-[0_35px_70px_rgba(0,128,128,0.5)] group-hover:scale-105 transition-all duration-500"
+                className="relative w-80 md:w-96 lg:w-[450px]"
               />
-              
-              {/* Floating sparkle effects */}
-              <div className="absolute top-10 right-10 w-3 h-3 bg-amber rounded-full animate-float opacity-60" style={{ animationDelay: "0.2s" }} />
-              <div className="absolute top-20 left-5 w-2 h-2 bg-teal-light rounded-full animate-float opacity-50" style={{ animationDelay: "0.8s" }} />
-              <div className="absolute bottom-20 right-5 w-2 h-2 bg-primary rounded-full animate-float opacity-40" style={{ animationDelay: "1.2s" }} />
             </div>
           </div>
         </div>
