@@ -55,11 +55,6 @@ const HeroSection = () => {
             style={{ animationDelay: "0.4s" }}
           >
             <div className="relative group cursor-pointer">
-              {/* Animated glow rings */}
-              <div className="absolute inset-0 bg-gradient-to-br from-teal/30 via-primary/20 to-amber/30 rounded-full blur-3xl scale-125 -z-10 animate-pulse-glow" />
-              <div className="absolute inset-0 bg-teal/10 rounded-full blur-2xl scale-90 -z-10 animate-pulse" style={{ animationDelay: "0.5s" }} />
-              <div className="absolute -inset-4 bg-gradient-radial from-amber/10 to-transparent rounded-full blur-xl -z-10 animate-pulse-glow" style={{ animationDelay: "1s" }} />
-              
               {/* Animated bird video */}
               <video 
                 src={birdMascotVideo} 
