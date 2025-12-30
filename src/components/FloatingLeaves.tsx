@@ -10,23 +10,41 @@ interface LeafProps {
   rotation?: number;
 }
 
-const Leaf = ({ delay = 0, duration = 8, startX = 0, startY = -20, size = 40, rotation = 0 }: LeafProps) => {
+interface LeafAnimationProps extends LeafProps {
+  swayDirection?: 'left' | 'right' | 'center';
+}
+
+const Leaf = ({ 
+  delay = 0, 
+  duration = 15, 
+  startX = 0, 
+  startY = -20, 
+  size = 40, 
+  rotation = 0,
+  swayDirection = 'center'
+}: LeafAnimationProps) => {
+  const swayPatterns = {
+    left: [-10, -40, -20, -60, -30],
+    right: [10, 40, 20, 60, 30],
+    center: [0, 25, -15, 35, -10, 20],
+  };
+
   return (
     <motion.div
       className="absolute pointer-events-none"
       style={{ left: `${startX}%`, top: startY }}
       initial={{ opacity: 0, y: startY, rotate: rotation, x: 0 }}
       animate={{
-        opacity: [0, 0.85, 0.85, 0],
-        y: [startY, startY + 400, startY + 800],
-        x: [0, 30, -20, 40, 0],
-        rotate: [rotation, rotation + 45, rotation + 90],
+        opacity: [0, 0.7, 0.75, 0.7, 0],
+        y: [startY, startY + 300, startY + 600, startY + 900],
+        x: swayPatterns[swayDirection],
+        rotate: [rotation, rotation + 30, rotation + 60, rotation + 90],
       }}
       transition={{
         duration,
         delay,
         repeat: Infinity,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.4, 0.0, 0.2, 1],
       }}
     >
       <img
@@ -48,13 +66,16 @@ interface FloatingLeavesProps {
 }
 
 const FloatingLeaves = ({ count = 6, className = "", overlay = false }: FloatingLeavesProps) => {
+  const swayDirections: Array<'left' | 'right' | 'center'> = ['left', 'right', 'center'];
+  
   const leaves = Array.from({ length: count }, (_, i) => ({
-    delay: i * 1.5,
-    duration: 10 + Math.random() * 5,
-    startX: 10 + (i * 80 / count) + Math.random() * 10,
-    startY: -30 - Math.random() * 50,
-    size: 45 + Math.random() * 35,
+    delay: i * 2.5,
+    duration: 18 + Math.random() * 8,
+    startX: 5 + (i * 90 / count) + (Math.random() * 8 - 4),
+    startY: -40 - Math.random() * 80,
+    size: 50 + Math.random() * 40,
     rotation: Math.random() * 360,
+    swayDirection: swayDirections[i % 3],
   }));
 
   return (
