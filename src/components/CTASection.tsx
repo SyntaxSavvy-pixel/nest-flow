@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import birdMascot from "@/assets/bird-hero.gif";
 import ScrollReveal from "./ScrollReveal";
 import FloatingLeaves from "./FloatingLeaves";
-
 const CTASection = () => {
-  return (
-    <section id="download" className="py-24 md:py-32 bg-background relative overflow-hidden">
+  return <section id="download" className="py-24 md:py-32 bg-background relative overflow-hidden">
       <FloatingLeaves count={8} overlay />
       
       {/* Background decorations */}
@@ -18,11 +16,7 @@ const CTASection = () => {
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal direction="none">
             <div className="mb-8">
-              <img 
-                src={birdMascot} 
-                alt="TabKeep bird mascot" 
-                className="w-32 h-32 mx-auto animate-float-slow object-contain"
-              />
+              
             </div>
           </ScrollReveal>
           
@@ -50,8 +44,6 @@ const CTASection = () => {
           </ScrollReveal>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTASection;
