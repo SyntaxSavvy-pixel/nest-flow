@@ -37,9 +37,6 @@ const CTASection = () => {
               <Button variant="hero" size="lg">
                 Add to Chrome — Free
               </Button>
-              <Button variant="outline" size="lg">
-                Other Browsers
-              </Button>
             </div>
           </ScrollReveal>
         </div>
