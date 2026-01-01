@@ -4,7 +4,6 @@ import nestWithTabs from "@/assets/nest-with-tabs.png";
 import ScrollReveal from "./ScrollReveal";
 import FloatingLeaves from "./FloatingLeaves";
 import TiltCard from "./TiltCard";
-import VideoPlaceholder from "./VideoPlaceholder";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -13,8 +12,7 @@ const steps = [
     icon: MousePointer,
     title: "Open a tab",
     description: "Browse like normal. When you find something worth keeping, you'll know.",
-    illustration: null,
-    videoLabel: "Tab browsing demo",
+    illustration: birdFlying,
   },
   {
     number: "02",
@@ -22,7 +20,6 @@ const steps = [
     title: "Bird collects it",
     description: "One click, and our friendly bird swoops in to save your tab. No fuss.",
     illustration: birdFlying,
-    videoLabel: "Save in action",
   },
   {
     number: "03",
@@ -30,7 +27,6 @@ const steps = [
     title: "Safe in your nest",
     description: "Your tabs rest in organized groups — Now, Later, Someday. Ready when you are.",
     illustration: nestWithTabs,
-    videoLabel: "Organized tabs view",
   },
 ];
 
@@ -102,21 +98,14 @@ const HowItWorksSection = () => {
                       className="w-full max-w-md"
                       tiltIntensity={8}
                     >
-                      {step.illustration ? (
-                        <div className="relative p-8 rounded-2xl bg-gradient-to-br from-cream to-cream-dark border border-border/30 shadow-soft">
-                          <motion.img 
-                            src={step.illustration} 
-                            alt={step.title}
-                            className="w-full max-w-[280px] mx-auto drop-shadow-lg"
-                            style={{ transform: "translateZ(50px)" }}
-                          />
-                        </div>
-                      ) : (
-                        <VideoPlaceholder 
-                          aspectRatio="16:9"
-                          label={step.videoLabel}
+                      <div className="relative p-8 rounded-2xl bg-gradient-to-br from-cream to-cream-dark border border-border/30 shadow-soft">
+                        <motion.img 
+                          src={step.illustration} 
+                          alt={step.title}
+                          className="w-full max-w-[280px] mx-auto drop-shadow-lg"
+                          style={{ transform: "translateZ(50px)" }}
                         />
-                      )}
+                      </div>
                     </TiltCard>
                   </div>
                 </div>

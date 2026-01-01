@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import birdMascotVideo from "@/assets/bird-hero.mp4";
 import { motion } from "framer-motion";
-import VideoPlaceholder from "./VideoPlaceholder";
 
 const HeroSection = () => {
   return (
@@ -73,20 +72,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
         </div>
-        
-        {/* Video showcase placeholder */}
-        <motion.div 
-          className="mt-16 lg:mt-24"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
-        >
-          <VideoPlaceholder 
-            aspectRatio="16:9"
-            label="See TabKeep in action"
-            className="max-w-4xl mx-auto"
-          />
-        </motion.div>
       </div>
     </section>
   );
