@@ -48,7 +48,6 @@ const features = [
   { name: "Collections", free: "3 (Now, Later, Someday)", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Search", free: "Basic", pro: "Smart search & tags", annual: "Smart search & tags", lifetime: "Smart search & tags" },
   { name: "Devices", free: "1 device", pro: "5 devices", annual: "5 devices", lifetime: "5 devices" },
-  { name: "Browsers", free: "Chrome only", pro: "Chrome, Firefox & Edge", annual: "Chrome, Firefox & Edge", lifetime: "Chrome, Firefox & Edge" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
   { name: "Auto-close unused tabs", free: false, pro: true, annual: true, lifetime: true },
   { name: "Cross-device sync", free: false, pro: true, annual: true, lifetime: true },
