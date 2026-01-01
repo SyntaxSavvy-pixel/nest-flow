@@ -1,16 +1,7 @@
 import { Check, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "./ScrollReveal";
-import FloatingLeaves from "./FloatingLeaves";
 import { motion } from "framer-motion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 const plans = [
   {
@@ -24,16 +15,16 @@ const plans = [
   {
     name: "Pro",
     price: "$4",
-    period: "/month",
-    description: "For peaceful, organized browsing",
+    period: "month",
+    description: "For peaceful browsing",
     cta: "Get Pro",
     featured: true,
   },
   {
     name: "Pro Annual",
     price: "$36",
-    period: "/year",
-    description: "Save $12 (just $3/month!)",
+    period: "year",
+    description: "Save $12 (just $3/mo)",
     cta: "Go Annual",
     featured: false,
   },
@@ -49,20 +40,15 @@ const plans = [
 ];
 
 const features = [
-  { name: "Saved tabs", free: "Up to 50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Collections", free: "3 (Now, Later, Someday)", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Search", free: "Basic", pro: "Smart search & tags", annual: "Smart search & tags", lifetime: "Smart search & tags" },
-  { name: "Devices", free: "1 device", pro: "5 devices", annual: "5 devices", lifetime: "5 devices" },
+  { name: "Saved tabs", free: "50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Devices", free: "1", pro: "5", annual: "5", lifetime: "5" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Auto-close unused tabs", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Smart search & tags", free: false, pro: true, annual: true, lifetime: true },
   { name: "Cross-device sync", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Analytics dashboard", free: false, pro: true, annual: true, lifetime: true },
   { name: "Custom themes", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Priority support", free: false, pro: true, annual: true, lifetime: "VIP priority" },
-  { name: "Export your data", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Early access to features", free: false, pro: false, annual: true, lifetime: true },
-  { name: "Annual supporter badge", free: false, pro: false, annual: true, lifetime: false },
-  { name: "Lock in current price", free: false, pro: false, annual: true, lifetime: true },
+  { name: "Priority support", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Early access", free: false, pro: false, annual: true, lifetime: true },
   { name: "All future updates", free: false, pro: false, annual: false, lifetime: true },
 ];
 
@@ -70,122 +56,125 @@ const PricingSection = () => {
   const renderCell = (value: boolean | string) => {
     if (typeof value === "boolean") {
       return value ? (
-        <Check className="w-5 h-5 text-teal mx-auto" />
+        <Check className="w-4 h-4 text-teal" />
       ) : (
-        <span className="text-muted-foreground/40">—</span>
+        <span className="text-muted-foreground/30">—</span>
       );
     }
-    return <span className="text-sm text-muted-foreground">{value}</span>;
+    return <span className="text-xs text-muted-foreground">{value}</span>;
   };
 
   return (
-    <section id="pricing" className="py-24 md:py-32 bg-cream-dark relative overflow-hidden">
-      <FloatingLeaves count={5} overlay />
+    <section id="pricing" className="py-20 md:py-24 bg-cream-dark relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <ScrollReveal className="text-center mb-16">
+        <ScrollReveal className="text-center mb-12">
           <motion.span 
-            className="inline-block text-sm font-medium text-teal uppercase tracking-wider mb-4"
+            className="inline-block text-sm font-medium text-teal uppercase tracking-wider mb-3"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             Pricing
           </motion.span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
             Simple, honest pricing
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Start free, upgrade when it feels right. No tricks, no hidden fees.
+          <p className="text-muted-foreground max-w-md mx-auto">
+            Start free, upgrade when it feels right.
           </p>
         </ScrollReveal>
 
-        {/* Pricing Grid Table */}
+        {/* Compact Pricing Table */}
         <motion.div
-          className="max-w-6xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="bg-card rounded-2xl border border-border shadow-soft overflow-hidden">
-            {/* Plan Headers */}
-            <div className="grid grid-cols-5 border-b border-border">
-              <div className="p-6 bg-secondary/30">
-                <span className="text-sm font-medium text-muted-foreground">Compare plans</span>
-              </div>
-              {plans.map((plan) => (
-                <div 
-                  key={plan.name} 
-                  className={`p-6 text-center ${plan.featured ? 'bg-primary/5 border-x-2 border-t-2 border-primary' : ''}`}
-                >
-                  {plan.limited && (
-                    <div className="flex items-center justify-center gap-1 text-amber text-xs font-medium mb-2">
-                      <Zap className="w-3 h-3" />
-                      Limited time offer
-                    </div>
-                  )}
-                  {plan.featured && (
-                    <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full mb-2">
-                      Most Popular
-                    </span>
-                  )}
-                  <h3 className="font-display text-lg font-bold text-foreground">{plan.name}</h3>
-                  <div className="mt-2">
-                    <span className="text-3xl font-display font-bold text-foreground">{plan.price}</span>
-                    <span className="text-muted-foreground text-sm">/{plan.period}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-1">{plan.description}</p>
-                </div>
-              ))}
-            </div>
+          <div className="bg-card rounded-xl border border-border shadow-soft overflow-hidden">
+            <table className="w-full">
+              {/* Header Row */}
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="p-4 text-left bg-secondary/20 w-[20%]">
+                    <span className="text-xs font-medium text-muted-foreground">Features</span>
+                  </th>
+                  {plans.map((plan) => (
+                    <th 
+                      key={plan.name} 
+                      className={`p-4 text-center w-[20%] ${plan.featured ? 'bg-primary/5' : ''}`}
+                    >
+                      {plan.limited && (
+                        <div className="flex items-center justify-center gap-1 text-amber text-[10px] font-medium mb-1">
+                          <Zap className="w-2.5 h-2.5" />
+                          Limited
+                        </div>
+                      )}
+                      {plan.featured && (
+                        <span className="inline-block px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-medium rounded-full mb-1">
+                          Popular
+                        </span>
+                      )}
+                      <div className="font-display text-sm font-bold text-foreground">{plan.name}</div>
+                      <div className="mt-1">
+                        <span className="text-xl font-display font-bold text-foreground">{plan.price}</span>
+                        <span className="text-muted-foreground text-[10px]">/{plan.period}</span>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
 
-            {/* Features Table */}
-            <Table>
-              <TableBody>
+              {/* Feature Rows */}
+              <tbody>
                 {features.map((feature, idx) => (
-                  <TableRow key={feature.name} className={idx % 2 === 0 ? 'bg-secondary/10' : ''}>
-                    <TableCell className="font-medium text-foreground w-1/5 py-4">
+                  <tr key={feature.name} className={`border-b border-border/50 ${idx % 2 === 0 ? 'bg-secondary/5' : ''}`}>
+                    <td className="px-4 py-2.5 text-sm text-foreground">
                       {feature.name}
-                    </TableCell>
-                    <TableCell className="text-center py-4">
+                    </td>
+                    <td className="px-4 py-2.5 text-center">
                       {renderCell(feature.free)}
-                    </TableCell>
-                    <TableCell className={`text-center py-4 ${plans[1].featured ? 'bg-primary/5 border-x-2 border-primary' : ''}`}>
+                    </td>
+                    <td className={`px-4 py-2.5 text-center ${plans[1].featured ? 'bg-primary/5' : ''}`}>
                       {renderCell(feature.pro)}
-                    </TableCell>
-                    <TableCell className="text-center py-4">
+                    </td>
+                    <td className="px-4 py-2.5 text-center">
                       {renderCell(feature.annual)}
-                    </TableCell>
-                    <TableCell className="text-center py-4">
+                    </td>
+                    <td className="px-4 py-2.5 text-center">
                       {renderCell(feature.lifetime)}
-                    </TableCell>
-                  </TableRow>
+                    </td>
+                  </tr>
                 ))}
-              </TableBody>
-            </Table>
+              </tbody>
 
-            {/* CTA Row */}
-            <div className="grid grid-cols-5 border-t border-border">
-              <div className="p-6 bg-secondary/30" />
-              {plans.map((plan) => (
-                <div 
-                  key={plan.name} 
-                  className={`p-6 text-center ${plan.featured ? 'bg-primary/5 border-x-2 border-b-2 border-primary rounded-b-lg' : ''}`}
-                >
-                  <Button 
-                    variant={plan.featured ? "default" : "outline"}
-                    className={`w-full ${plan.featured ? 'gradient-primary text-primary-foreground' : ''}`}
-                  >
-                    {plan.cta}
-                  </Button>
-                </div>
-              ))}
-            </div>
+              {/* CTA Row */}
+              <tfoot>
+                <tr>
+                  <td className="p-4 bg-secondary/20" />
+                  {plans.map((plan) => (
+                    <td 
+                      key={plan.name} 
+                      className={`p-4 text-center ${plan.featured ? 'bg-primary/5' : ''}`}
+                    >
+                      <Button 
+                        variant={plan.featured ? "default" : "outline"}
+                        size="sm"
+                        className={`w-full text-xs ${plan.featured ? 'gradient-primary text-primary-foreground' : ''}`}
+                      >
+                        {plan.cta}
+                      </Button>
+                    </td>
+                  ))}
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </motion.div>
         
-        <ScrollReveal delay={0.4}>
-          <p className="text-center text-sm text-muted-foreground mt-8">
+        <ScrollReveal delay={0.3}>
+          <p className="text-center text-xs text-muted-foreground mt-6">
             Built by someone who was overwhelmed by the internet. We get it.
           </p>
         </ScrollReveal>
