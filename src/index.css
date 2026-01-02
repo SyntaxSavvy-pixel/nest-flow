@@ -75,42 +75,69 @@
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 36 20% 95%;
+    /* Deep night sky background with subtle blue undertone */
+    --background: 225 25% 8%;
+    --foreground: 210 20% 92%;
 
-    --card: 220 18% 13%;
-    --card-foreground: 36 20% 95%;
+    /* Cards with subtle gradient feel - slightly lighter than bg */
+    --card: 225 22% 11%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 220 18% 13%;
-    --popover-foreground: 36 20% 95%;
+    --popover: 225 22% 11%;
+    --popover-foreground: 210 20% 92%;
 
-    --primary: 174 55% 50%;
-    --primary-foreground: 220 20% 10%;
+    /* Primary: Glowing teal that pops in dark mode */
+    --primary: 174 65% 45%;
+    --primary-foreground: 225 25% 8%;
 
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 36 20% 95%;
+    /* Secondary: Subtle charcoal with blue tint */
+    --secondary: 225 20% 15%;
+    --secondary-foreground: 210 20% 88%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 60%;
+    /* Muted: Soft dark gray */
+    --muted: 225 18% 14%;
+    --muted-foreground: 220 15% 55%;
 
-    --accent: 45 80% 60%;
-    --accent-foreground: 220 20% 10%;
+    /* Accent: Warm amber glow */
+    --accent: 45 85% 55%;
+    --accent-foreground: 225 25% 8%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 36 20% 95%;
+    --destructive: 0 65% 48%;
+    --destructive-foreground: 210 20% 95%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 174 55% 50%;
+    /* Borders with subtle visibility */
+    --border: 225 18% 18%;
+    --input: 225 18% 18%;
+    --ring: 174 65% 45%;
 
-    --sidebar-background: 220 20% 10%;
-    --sidebar-foreground: 36 20% 95%;
-    --sidebar-primary: 174 55% 50%;
-    --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 220 15% 18%;
-    --sidebar-accent-foreground: 36 20% 95%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 174 55% 50%;
+    /* Custom dark tokens */
+    --cream: 225 25% 8%;
+    --cream-dark: 225 22% 11%;
+    --teal: 174 65% 45%;
+    --teal-light: 174 60% 55%;
+    --teal-dark: 174 70% 35%;
+    --charcoal: 210 20% 92%;
+    --charcoal-light: 220 15% 70%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(174, 65%, 40%) 0%, hsl(180, 55%, 45%) 50%, hsl(190, 50%, 42%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(225, 25%, 8%) 0%, hsl(225, 22%, 11%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(225, 22%, 13%) 0%, hsl(225, 20%, 10%) 100%);
+
+    /* Dark mode shadows with glow effects */
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(174 65% 45% / 0.2);
+
+    /* Sidebar */
+    --sidebar-background: 225 25% 6%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 174 65% 45%;
+    --sidebar-primary-foreground: 225 25% 8%;
+    --sidebar-accent: 225 20% 12%;
+    --sidebar-accent-foreground: 210 20% 88%;
+    --sidebar-border: 225 18% 15%;
+    --sidebar-ring: 174 65% 45%;
   }
 }
 
