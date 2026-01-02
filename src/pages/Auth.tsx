@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import birdHero from "@/assets/bird-hero.gif";
-
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -16,32 +15,36 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (session?.user) {
-          navigate("/dashboard");
-        }
+    const {
+      data: {
+        subscription
       }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
         navigate("/dashboard");
       }
     });
-
+    supabase.auth.getSession().then(({
+      data: {
+        session
+      }
+    }) => {
+      if (session?.user) {
+        navigate("/dashboard");
+      }
+    });
     return () => subscription.unsubscribe();
   }, [navigate]);
-
   const validateForm = () => {
     if (!email || !email.includes("@")) {
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return false;
     }
@@ -49,42 +52,43 @@ const Auth = () => {
       toast({
         title: "Password too short",
         description: "Password must be at least 6 characters.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return false;
     }
     return true;
   };
-
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setLoading(true);
-
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
+        const {
+          error
+        } = await supabase.auth.signInWithPassword({
           email,
-          password,
+          password
         });
         if (error) throw error;
         toast({
           title: "Welcome back!",
-          description: "You've successfully signed in.",
+          description: "You've successfully signed in."
         });
       } else {
-        const { error } = await supabase.auth.signUp({
+        const {
+          error
+        } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/`,
-          },
+            emailRedirectTo: `${window.location.origin}/`
+          }
         });
         if (error) throw error;
         toast({
           title: "Account created!",
-          description: "Welcome to TabKeep. Your calm place awaits.",
+          description: "Welcome to TabKeep. Your calm place awaits."
         });
       }
     } catch (error: any) {
@@ -95,15 +99,13 @@ const Auth = () => {
       toast({
         title: "Something went wrong",
         description: message,
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
-  return (
-    <div className="min-h-screen bg-background flex">
+  return <div className="min-h-screen bg-background flex">
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 gradient-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -112,11 +114,15 @@ const Auth = () => {
         </div>
         
         <div className="relative z-10 flex flex-col justify-center items-center w-full p-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6
+        }}>
             <a href="/" className="flex items-center gap-3 mb-12">
               <div className="w-14 h-14 rounded-2xl bg-background/20 backdrop-blur-sm flex items-center justify-center">
                 <Feather className="w-7 h-7 text-primary-foreground" />
@@ -128,31 +134,19 @@ const Auth = () => {
           <motion.div className="relative mb-8">
             {/* Glow effect */}
             <div className="absolute inset-0 bg-background/10 rounded-full blur-3xl scale-110" />
-            <motion.img
-              src={birdHero}
-              alt="TabKeep bird mascot"
-              className="relative w-64 h-64 object-contain drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
-              style={{ filter: "contrast(1.02) saturate(1.1)" }}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1, 
-                y: [0, -8, 0]
-              }}
-              transition={{ 
-                opacity: { duration: 0.6, delay: 0.2 },
-                scale: { duration: 0.6, delay: 0.2 },
-                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }
-              }}
-            />
+            
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="max-w-md"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6,
+          delay: 0.4
+        }} className="max-w-md">
             <h2 className="font-display text-3xl font-bold text-primary-foreground mb-4">
               Your calm place for tabs
             </h2>
@@ -165,12 +159,15 @@ const Auth = () => {
 
       {/* Right Side - Auth Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
-        <motion.div
-          className="w-full max-w-md"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div className="w-full max-w-md" initial={{
+        opacity: 0,
+        x: 20
+      }} animate={{
+        opacity: 1,
+        x: 0
+      }} transition={{
+        duration: 0.5
+      }}>
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-2 mb-8">
             <a href="/" className="flex items-center gap-2">
@@ -186,9 +183,7 @@ const Auth = () => {
               {isLogin ? "Welcome back" : "Create your nest"}
             </h1>
             <p className="text-muted-foreground">
-              {isLogin
-                ? "Sign in to access your organized tabs"
-                : "Start your journey to digital clarity"}
+              {isLogin ? "Sign in to access your organized tabs" : "Start your journey to digital clarity"}
             </p>
           </div>
 
@@ -199,15 +194,7 @@ const Auth = () => {
               </Label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-12 h-12 rounded-xl border-border/50 bg-background focus:border-primary focus:ring-primary/20"
-                  required
-                />
+                <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} className="pl-12 h-12 rounded-xl border-border/50 bg-background focus:border-primary focus:ring-primary/20" required />
               </div>
             </div>
 
@@ -217,52 +204,28 @@ const Auth = () => {
               </Label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-12 pr-12 h-12 rounded-xl border-border/50 bg-background focus:border-primary focus:ring-primary/20"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} className="pl-12 pr-12 h-12 rounded-xl border-border/50 bg-background focus:border-primary focus:ring-primary/20" required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
 
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full h-12 rounded-xl font-semibold gradient-primary text-primary-foreground shadow-soft hover:shadow-medium transition-all"
-            >
-              {loading ? (
-                <span className="flex items-center gap-2">
+            <Button type="submit" disabled={loading} className="w-full h-12 rounded-xl font-semibold gradient-primary text-primary-foreground shadow-soft hover:shadow-medium transition-all">
+              {loading ? <span className="flex items-center gap-2">
                   <span className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                   {isLogin ? "Signing in..." : "Creating account..."}
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
+                </span> : <span className="flex items-center gap-2">
                   {isLogin ? "Sign in" : "Create account"}
                   <ArrowRight className="w-5 h-5" />
-                </span>
-              )}
+                </span>}
             </Button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-muted-foreground">
               {isLogin ? "New to TabKeep?" : "Already have an account?"}{" "}
-              <button
-                type="button"
-                onClick={() => setIsLogin(!isLogin)}
-                className="text-primary font-semibold hover:underline"
-              >
+              <button type="button" onClick={() => setIsLogin(!isLogin)} className="text-primary font-semibold hover:underline">
                 {isLogin ? "Create an account" : "Sign in"}
               </button>
             </p>
@@ -273,8 +236,6 @@ const Auth = () => {
           </p>
         </motion.div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Auth;
