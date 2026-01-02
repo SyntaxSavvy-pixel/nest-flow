@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Zap } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -21,7 +21,7 @@ const plans = [
   {
     name: "Pro",
     price: "$4",
-    period: "/month",
+    period: "month",
     description: "For peaceful, organized browsing",
     cta: "Upgrade",
     featured: true,
@@ -29,7 +29,7 @@ const plans = [
   {
     name: "Pro Annual",
     price: "$36",
-    period: "/year",
+    period: "year",
     description: "Save $12 (just $3/month!)",
     cta: "Upgrade",
   },
@@ -39,38 +39,33 @@ const plans = [
     period: "one-time",
     description: "Pay once, own forever",
     cta: "Get Lifetime",
-    limited: true,
   },
 ];
 
 const features = [
   { name: "Saved tabs", free: "Up to 50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Collections", free: "3 (Now, Later, Someday)", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Search", free: "Basic", pro: "Smart search & tags", annual: "Smart search & tags", lifetime: "Smart search & tags" },
+  { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Search", free: "Basic", pro: "Smart search", annual: "Smart search", lifetime: "Smart search" },
   { name: "Devices", free: "1 device", pro: "5 devices", annual: "5 devices", lifetime: "5 devices" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
   { name: "Auto-close unused tabs", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Cross-device sync", free: false, pro: true, annual: true, lifetime: true },
   { name: "Analytics dashboard", free: false, pro: true, annual: true, lifetime: true },
   { name: "Custom themes", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Priority support", free: false, pro: true, annual: true, lifetime: "VIP priority" },
-  { name: "Export your data", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Early access to features", free: false, pro: false, annual: true, lifetime: true },
-  { name: "Annual supporter badge", free: false, pro: false, annual: true, lifetime: false },
-  { name: "Lock in current price", free: false, pro: false, annual: true, lifetime: true },
-  { name: "All future updates", free: false, pro: false, annual: false, lifetime: true },
+  { name: "Priority support", free: true, pro: true, annual: true, lifetime: true },
+  { name: "Export your data", free: true, pro: true, annual: true, lifetime: true },
+  { name: "Early access", free: false, pro: false, annual: true, lifetime: true },
 ];
 
 const Subscription = () => {
   const renderCell = (value: boolean | string) => {
     if (typeof value === "boolean") {
       return value ? (
-        <Check className="w-5 h-5 text-teal mx-auto" />
+        <Check className="w-4 h-4 text-teal" />
       ) : (
         <span className="text-muted-foreground/40">—</span>
       );
     }
-    return <span className="text-sm text-muted-foreground">{value}</span>;
+    return <span className="text-[11px] md:text-xs text-muted-foreground">{value}</span>;
   };
 
   return (
@@ -100,83 +95,84 @@ const Subscription = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
+          className="overflow-x-auto"
         >
-          <div className="bg-card rounded-2xl border border-border shadow-soft overflow-hidden">
+          <div className="bg-card rounded-2xl border border-border shadow-soft overflow-hidden min-w-[600px]">
             {/* Plan Headers */}
-            <div className="grid grid-cols-5 border-b border-border">
-              <div className="p-4 md:p-6 bg-secondary/30">
-                <span className="text-sm font-medium text-muted-foreground">Compare plans</span>
+            <div className="grid grid-cols-5">
+              <div className="p-3 md:p-4 bg-secondary/30 border-b border-border flex items-center">
+                <span className="text-xs md:text-sm font-medium text-muted-foreground">Compare plans</span>
               </div>
               {plans.map((plan) => (
                 <div 
                   key={plan.name} 
-                  className={`p-4 md:p-6 text-center ${plan.featured ? 'bg-primary/5 border-x-2 border-t-2 border-primary' : ''} ${plan.current ? 'bg-secondary/20' : ''}`}
+                  className={`p-3 md:p-4 text-center border-b border-border flex flex-col items-center justify-center ${plan.featured ? 'bg-primary/5 border-x-2 border-t-2 border-primary' : ''} ${plan.current ? 'bg-secondary/20' : ''}`}
                 >
-                  {plan.limited && (
-                    <div className="flex items-center justify-center gap-1 text-amber text-xs font-medium mb-2">
-                      <Zap className="w-3 h-3" />
-                      Limited offer
-                    </div>
-                  )}
                   {plan.featured && (
-                    <span className="inline-block px-2 py-0.5 bg-primary text-primary-foreground text-xs font-medium rounded-full mb-2">
+                    <span className="inline-block px-2 py-0.5 bg-primary text-primary-foreground text-[10px] md:text-xs font-medium rounded-full mb-1">
                       Popular
                     </span>
                   )}
                   {plan.current && (
-                    <span className="inline-block px-2 py-0.5 bg-secondary text-foreground text-xs font-medium rounded-full mb-2">
+                    <span className="inline-block px-2 py-0.5 bg-secondary text-foreground text-[10px] md:text-xs font-medium rounded-full mb-1">
                       Current
                     </span>
                   )}
-                  <h3 className="font-display text-sm md:text-lg font-bold text-foreground">{plan.name}</h3>
-                  <div className="mt-1 md:mt-2">
-                    <span className="text-xl md:text-3xl font-display font-bold text-foreground">{plan.price}</span>
-                    <span className="text-muted-foreground text-xs md:text-sm">/{plan.period}</span>
+                  <h3 className="font-display text-xs md:text-base font-bold text-foreground">{plan.name}</h3>
+                  <div className="mt-0.5 md:mt-1">
+                    <span className="text-lg md:text-2xl font-display font-bold text-foreground">{plan.price}</span>
+                    <span className="text-muted-foreground text-[10px] md:text-xs">/{plan.period}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1 hidden md:block">{plan.description}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5 hidden md:block">{plan.description}</p>
                 </div>
               ))}
             </div>
 
             {/* Features Table */}
-            <div className="overflow-x-auto">
-              <Table>
-                <TableBody>
-                  {features.map((feature, idx) => (
-                    <TableRow key={feature.name} className={idx % 2 === 0 ? 'bg-secondary/10' : ''}>
-                      <TableCell className="font-medium text-foreground w-1/5 py-3 md:py-4 text-xs md:text-sm">
-                        {feature.name}
-                      </TableCell>
-                      <TableCell className={`text-center py-3 md:py-4 ${plans[0].current ? 'bg-secondary/10' : ''}`}>
+            <Table>
+              <TableBody>
+                {features.map((feature, idx) => (
+                  <TableRow key={feature.name} className={idx % 2 === 0 ? 'bg-secondary/5' : ''}>
+                    <TableCell className="font-medium text-foreground w-[20%] py-2 md:py-3 px-3 md:px-4 text-[11px] md:text-sm">
+                      {feature.name}
+                    </TableCell>
+                    <TableCell className={`w-[20%] py-2 md:py-3 px-2 ${plans[0].current ? 'bg-secondary/10' : ''}`}>
+                      <div className="flex items-center justify-center">
                         {renderCell(feature.free)}
-                      </TableCell>
-                      <TableCell className={`text-center py-3 md:py-4 ${plans[1].featured ? 'bg-primary/5 border-x-2 border-primary' : ''}`}>
+                      </div>
+                    </TableCell>
+                    <TableCell className={`w-[20%] py-2 md:py-3 px-2 ${plans[1].featured ? 'bg-primary/5 border-x-2 border-primary' : ''}`}>
+                      <div className="flex items-center justify-center">
                         {renderCell(feature.pro)}
-                      </TableCell>
-                      <TableCell className="text-center py-3 md:py-4">
+                      </div>
+                    </TableCell>
+                    <TableCell className="w-[20%] py-2 md:py-3 px-2">
+                      <div className="flex items-center justify-center">
                         {renderCell(feature.annual)}
-                      </TableCell>
-                      <TableCell className="text-center py-3 md:py-4">
+                      </div>
+                    </TableCell>
+                    <TableCell className="w-[20%] py-2 md:py-3 px-2">
+                      <div className="flex items-center justify-center">
                         {renderCell(feature.lifetime)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
 
             {/* CTA Row */}
             <div className="grid grid-cols-5 border-t border-border">
-              <div className="p-4 md:p-6 bg-secondary/30" />
+              <div className="p-3 md:p-4 bg-secondary/30" />
               {plans.map((plan) => (
                 <div 
                   key={plan.name} 
-                  className={`p-4 md:p-6 text-center ${plan.featured ? 'bg-primary/5 border-x-2 border-b-2 border-primary rounded-b-lg' : ''}`}
+                  className={`p-3 md:p-4 flex items-center justify-center ${plan.featured ? 'bg-primary/5 border-x-2 border-b-2 border-primary rounded-b-lg' : ''}`}
                 >
                   <Button 
                     variant={plan.current ? "outline" : plan.featured ? "default" : "outline"}
                     size="sm"
-                    className={`w-full ${plan.featured ? 'gradient-primary text-primary-foreground' : ''}`}
+                    className={`w-full max-w-[100px] text-[11px] md:text-sm ${plan.featured ? 'gradient-primary text-primary-foreground' : ''}`}
                     disabled={plan.current}
                   >
                     {plan.cta}
