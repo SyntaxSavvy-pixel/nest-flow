@@ -56,7 +56,9 @@ const PricingSection = () => {
   const renderCell = (value: boolean | string) => {
     if (typeof value === "boolean") {
       return value ? (
-        <Check className="w-4 h-4 text-teal" />
+        <div className="flex items-center justify-center">
+          <Check className="w-4 h-4 text-teal" />
+        </div>
       ) : (
         <span className="text-muted-foreground/30">—</span>
       );
