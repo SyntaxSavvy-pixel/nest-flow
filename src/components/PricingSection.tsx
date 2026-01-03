@@ -43,13 +43,13 @@ const features = [
   { name: "Saved tabs", free: "50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Devices", free: "1", pro: "5", annual: "5", lifetime: "5" },
+  { name: "VPN access", free: "Limited", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
   { name: "Smart search & tags", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Cross-device sync", free: false, pro: true, annual: true, lifetime: true },
   { name: "Custom themes", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Priority support", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Priority support", free: true, pro: true, annual: true, lifetime: true },
+  { name: "Export your data", free: true, pro: true, annual: true, lifetime: true },
   { name: "Early access", free: false, pro: false, annual: true, lifetime: true },
-  { name: "All future updates", free: false, pro: false, annual: false, lifetime: true },
 ];
 
 const PricingSection = () => {
