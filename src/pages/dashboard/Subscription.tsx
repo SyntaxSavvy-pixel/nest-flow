@@ -48,24 +48,22 @@ const features = [
   { name: "Tab collections", free: "5", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Devices synced", free: "2", pro: "5", annual: "10", lifetime: "15" },
   
-  // Automation - the real upgrade incentive
+  // Automation - combined smart organization
   { name: "Auto-close timers", free: "1 active", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Auto-group tabs", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Schedule tab actions", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Smart tab organization", free: "Basic", pro: "Full automation", annual: "Full automation", lifetime: "Full automation" },
   
   // AI features - gives real value, limited for free
   { name: "AI search", free: "10/day", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Smart suggestions", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Smart suggestions", free: "3/day", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   
-  // Privacy & customization
-  { name: "VPN protection", free: "1 location", pro: "All locations", annual: "All locations", lifetime: "All locations" },
+  // Privacy & customization - VPN Super style
+  { name: "VPN protection", free: "With ads", pro: "50+ locations", annual: "50+ locations", lifetime: "50+ locations" },
   { name: "Custom themes", free: "3 themes", pro: "All themes", annual: "All themes", lifetime: "All themes" },
   
-  // Support & extras
+  // Support & extras - Priority support for all
   { name: "Tab analytics", free: "Basic", pro: "Full insights", annual: "Full insights", lifetime: "Full insights" },
   { name: "Export your data", free: true, pro: true, annual: true, lifetime: true },
-  { name: "Priority support", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Priority support", free: true, pro: true, annual: true, lifetime: true },
   { name: "Early access", free: false, pro: false, annual: true, lifetime: true },
 ];
 
