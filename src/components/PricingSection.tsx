@@ -42,7 +42,7 @@ const plans = [
 const features = [
   { name: "Saved tabs", free: "50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Devices", free: "1", pro: "5", annual: "5", lifetime: "5" },
+  { name: "Devices", free: "2", pro: "5", annual: "10", lifetime: "15" },
   { name: "VPN access", free: "Limited", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
   { name: "Smart search & tags", free: false, pro: true, annual: true, lifetime: true },
