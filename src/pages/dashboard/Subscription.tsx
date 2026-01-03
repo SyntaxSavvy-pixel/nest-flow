@@ -46,7 +46,7 @@ const features = [
   { name: "Saved tabs", free: "Up to 50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "Search", free: "Basic", pro: "Smart search", annual: "Smart search", lifetime: "Smart search" },
-  { name: "Devices", free: "1 device", pro: "5 devices", annual: "5 devices", lifetime: "5 devices" },
+  { name: "Devices", free: "2 devices", pro: "5 devices", annual: "10 devices", lifetime: "15 devices" },
   { name: "VPN access", free: "Limited", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
   { name: "Auto-close unused tabs", free: false, pro: true, annual: true, lifetime: true },
