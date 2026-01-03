@@ -43,17 +43,29 @@ const plans = [
 ];
 
 const features = [
-  { name: "Saved tabs", free: "Up to 50", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Collections", free: "3", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
-  { name: "Search", free: "Basic", pro: "Smart search", annual: "Smart search", lifetime: "Smart search" },
-  { name: "Devices", free: "2 devices", pro: "5 devices", annual: "10 devices", lifetime: "15 devices" },
-  { name: "VPN access", free: "Limited", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  // Core tab management - Free is usable, Pro is powerful
+  { name: "Saved tabs", free: "100", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Tab collections", free: "5", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Devices synced", free: "2", pro: "5", annual: "10", lifetime: "15" },
+  
+  // Automation - the real upgrade incentive
+  { name: "Auto-close timers", free: "1 active", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
+  { name: "Auto-group tabs", free: false, pro: true, annual: true, lifetime: true },
+  { name: "Schedule tab actions", free: false, pro: true, annual: true, lifetime: true },
+  
+  // AI features - gives real value, limited for free
+  { name: "AI search", free: "10/day", pro: "Unlimited", annual: "Unlimited", lifetime: "Unlimited" },
   { name: "AI auto-organize", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Auto-close unused tabs", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Analytics dashboard", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Custom themes", free: false, pro: true, annual: true, lifetime: true },
-  { name: "Priority support", free: true, pro: true, annual: true, lifetime: true },
+  { name: "Smart suggestions", free: false, pro: true, annual: true, lifetime: true },
+  
+  // Privacy & customization
+  { name: "VPN protection", free: "1 location", pro: "All locations", annual: "All locations", lifetime: "All locations" },
+  { name: "Custom themes", free: "3 themes", pro: "All themes", annual: "All themes", lifetime: "All themes" },
+  
+  // Support & extras
+  { name: "Tab analytics", free: "Basic", pro: "Full insights", annual: "Full insights", lifetime: "Full insights" },
   { name: "Export your data", free: true, pro: true, annual: true, lifetime: true },
+  { name: "Priority support", free: false, pro: true, annual: true, lifetime: true },
   { name: "Early access", free: false, pro: false, annual: true, lifetime: true },
 ];
 
