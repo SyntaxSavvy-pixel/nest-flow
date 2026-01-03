@@ -1,8 +1,6 @@
 import { Feather } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="py-16 bg-background border-t border-border">
+  return <footer className="py-16 bg-background border-t border-border">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
@@ -24,9 +22,7 @@ const Footer = () => {
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Support
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Twitter
-            </a>
+            
           </nav>
           
           {/* Tagline */}
@@ -35,8 +31,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
