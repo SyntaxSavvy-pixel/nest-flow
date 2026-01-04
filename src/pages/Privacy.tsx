@@ -12,7 +12,7 @@ const Privacy = () => {
     {
       icon: Lock,
       title: "Password Security",
-      content: "We never store your passwords in plain text. All passwords are hashed using bcrypt with salt, making them virtually impossible to reverse-engineer. Even our team cannot access your actual password."
+      content: "We never store or have access to your passwords. Authentication is handled by a secure, industry-standard system that encrypts and protects your credentials. Your password is never visible to our team - we only receive confirmation that you've been authenticated. Even we cannot see or retrieve your actual password."
     },
     {
       icon: Eye,
