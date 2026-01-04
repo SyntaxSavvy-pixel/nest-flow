@@ -1,6 +1,12 @@
 import { Feather } from "lucide-react";
+import { Link } from "react-router-dom";
+import SupportDialog from "./SupportDialog";
+
 const Footer = () => {
-  return <footer className="py-16 bg-background border-t border-border">
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <footer className="py-16 bg-background border-t border-border">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
@@ -13,24 +19,27 @@ const Footer = () => {
           
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
               Privacy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            </Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
               Terms
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Support
-            </a>
-            
+            </Link>
+            <SupportDialog>
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                Support
+              </button>
+            </SupportDialog>
           </nav>
           
-          {/* Tagline */}
+          {/* Copyright */}
           <p className="text-sm text-muted-foreground text-center md:text-right">
-            Made with calm in mind 🪺
+            © {currentYear} TabKeep. Made with calm in mind 🪺
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
