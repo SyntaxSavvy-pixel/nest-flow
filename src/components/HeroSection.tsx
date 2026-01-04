@@ -70,7 +70,7 @@ const HeroSection = () => {
           delay: 0.3,
           ease: "easeOut"
         }}>
-            <div className="relative group cursor-pointer">
+            <div className="relative">
               {/* Animated bird video */}
               <video src={birdMascotVideo} autoPlay muted playsInline className="relative w-80 md:w-96 lg:w-[450px]" />
             </div>
