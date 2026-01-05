@@ -1,5 +1,6 @@
 import { MousePointer, Feather, FolderOpen } from "lucide-react";
 import birdFlying from "@/assets/bird-flying.png";
+import birdCollecting from "@/assets/bird-collecting.png";
 import nestWithTabs from "@/assets/nest-with-tabs.png";
 import ScrollReveal from "./ScrollReveal";
 import FloatingLeaves from "./FloatingLeaves";
@@ -19,7 +20,7 @@ const steps = [
     icon: Feather,
     title: "Bird collects it",
     description: "One click, and our friendly bird swoops in to save your tab. No fuss.",
-    illustration: birdFlying,
+    illustration: birdCollecting,
   },
   {
     number: "03",
