@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Feather, Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -300,7 +300,14 @@ const Auth = () => {
           </div>
 
           <p className="mt-8 text-center text-sm text-muted-foreground/70">
-            By continuing, you agree to our Terms of Service and Privacy Policy.
+            By continuing, you agree to our{" "}
+            <Link to="/terms" className="text-primary hover:underline transition-colors">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link to="/privacy" className="text-primary hover:underline transition-colors">
+              Privacy Policy
+            </Link>.
           </p>
         </motion.div>
       </div>
