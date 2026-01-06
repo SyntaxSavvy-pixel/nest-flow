@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { 
-  LayoutDashboard, 
-  CreditCard, 
-  BarChart3, 
-  Shield, 
-  User, 
+import {
+  LayoutDashboard,
+  CreditCard,
+  BarChart3,
+  Shield,
+  User,
   Palette,
   Menu,
   X,
-  Feather
+  Feather,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,9 +33,19 @@ const navItems: NavItem[] = [
 ];
 
 const DashboardSidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Load collapsed state from localStorage, default to true (collapsed)
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    const saved = localStorage.getItem('sidebar-collapsed');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  // Save to localStorage whenever state changes (only when user toggles)
+  useEffect(() => {
+    localStorage.setItem('sidebar-collapsed', JSON.stringify(isCollapsed));
+  }, [isCollapsed]);
 
   const isActive = (href: string) => location.pathname === href;
 
@@ -55,9 +67,10 @@ const DashboardSidebar = () => {
       {/* Sidebar */}
       <motion.aside
         initial={false}
-        animate={{ 
-          width: isCollapsed ? 80 : 280,
+        animate={{
+          width: isCollapsed ? 72 : 280,
         }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={cn(
           "fixed left-0 top-0 h-screen z-50",
           "bg-card border-r border-border/50",
@@ -93,14 +106,17 @@ const DashboardSidebar = () => {
               "flex items-center justify-center gap-2",
               "text-primary-foreground font-medium",
               "shadow-soft hover:shadow-medium transition-all",
-              "hover:scale-[1.02] active:scale-[0.98]"
+              "hover:scale-[1.02] active:scale-[0.98]",
+              "group relative"
             )}
+            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {isCollapsed ? (
-              <Menu className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
             ) : (
               <>
-                <Menu className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+                <span className="text-sm">Collapse</span>
               </>
             )}
           </button>
@@ -114,12 +130,14 @@ const DashboardSidebar = () => {
               <button
                 key={item.label}
                 onClick={() => navigate(item.href)}
+                title={isCollapsed ? item.label : undefined}
                 className={cn(
-                  "w-full flex items-center gap-3 px-4 py-3 rounded-xl",
+                  "w-full flex items-center rounded-xl",
                   "transition-all duration-200",
-                  "text-left",
-                  active 
-                    ? "gradient-primary text-primary-foreground shadow-soft" 
+                  "text-left relative group",
+                  isCollapsed ? "justify-center px-4 py-3" : "gap-3 px-4 py-3",
+                  active
+                    ? "gradient-primary text-primary-foreground shadow-soft"
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                 )}
               >
@@ -127,6 +145,26 @@ const DashboardSidebar = () => {
                   "w-5 h-5 flex-shrink-0",
                   active ? "text-primary-foreground" : "text-muted-foreground"
                 )} />
+
+                {/* Tooltip for collapsed state */}
+                {isCollapsed && (
+                  <div className={cn(
+                    "absolute left-full ml-2 px-3 py-2 rounded-lg",
+                    "bg-popover text-popover-foreground text-sm font-medium",
+                    "shadow-lg border border-border",
+                    "opacity-0 group-hover:opacity-100",
+                    "pointer-events-none transition-opacity whitespace-nowrap z-50",
+                    "invisible group-hover:visible"
+                  )}>
+                    {item.label}
+                    {item.badge && (
+                      <span className="block text-xs opacity-70 mt-0.5">
+                        {item.badge}
+                      </span>
+                    )}
+                  </div>
+                )}
+
                 {!isCollapsed && (
                   <div className="flex-1 min-w-0">
                     <span className={cn(
@@ -148,11 +186,15 @@ const DashboardSidebar = () => {
         </nav>
       </motion.aside>
 
-      {/* Spacer for main content */}
-      <div className={cn(
-        "flex-shrink-0 transition-all duration-300",
-        isCollapsed ? "w-20" : "w-[280px]"
-      )} />
+      {/* Spacer for main content - matches sidebar width exactly */}
+      <motion.div
+        initial={false}
+        animate={{
+          width: isCollapsed ? 72 : 280,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="flex-shrink-0"
+      />
     </>
   );
 };
