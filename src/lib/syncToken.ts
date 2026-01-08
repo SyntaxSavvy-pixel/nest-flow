@@ -81,12 +81,23 @@ export function getTokenPrefix(token: string): string | null {
 
 /**
  * Check if a token exists in the database (collision detection)
- * This should be implemented with your actual database query
  */
 export async function checkTokenCollision(token: string): Promise<boolean> {
-  // This will be implemented with Supabase query
-  // For now, return false (no collision)
-  return false;
+  // Import supabase dynamically to avoid circular dependencies
+  const { supabase } = await import('@/integrations/supabase/client');
+
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('sync_token', token)
+    .maybeSingle();
+
+  if (error && error.code !== 'PGRST116') {
+    console.error('Error checking token collision:', error);
+    return false;
+  }
+
+  return data !== null;
 }
 
 /**

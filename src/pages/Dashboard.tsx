@@ -1,15 +1,69 @@
 import { useNavigate } from "react-router-dom";
 import { Layers, Grid3X3, Clock, ListTodo } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import StatsCard from "@/components/dashboard/StatsCard";
 import SmartSuggestions from "@/components/dashboard/SmartSuggestions";
 import RecentActivity from "@/components/dashboard/RecentActivity";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { getUserProfile } from "@/lib/userProfile";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Auto-sync with extension when dashboard loads
+  useEffect(() => {
+    const syncWithExtension = async () => {
+      try {
+        // Check if extension is installed
+        const isExtensionInstalled = (window as any).__TABKEEP_EXTENSION_INSTALLED__;
+
+        if (!isExtensionInstalled) {
+          console.log('Extension not detected, skipping auto-sync');
+          return;
+        }
+
+        // Get current session
+        const { data: { session } } = await supabase.auth.getSession();
+
+        if (!session) {
+          console.log('No active session, skipping sync');
+          return;
+        }
+
+        // Get user profile with sync token
+        const profile = await getUserProfile();
+
+        if (!profile || !profile.syncToken) {
+          console.log('No sync token available');
+          return;
+        }
+
+        // Send auth data to extension via postMessage
+        const authData = {
+          type: 'TABKEEP_AUTH_SUCCESS',
+          syncToken: profile.syncToken,
+          userId: session.user.id,
+          userEmail: session.user.email,
+          avatarId: profile.avatarId,
+          timestamp: Date.now(),
+        };
+
+        window.postMessage(authData, window.location.origin);
+        console.log('🔄 Dashboard auto-synced with extension');
+      } catch (error) {
+        console.error('Error syncing with extension:', error);
+      }
+    };
+
+    // Run sync after a short delay to ensure page is fully loaded
+    const timer = setTimeout(syncWithExtension, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSuggestionAction = (action: string) => {
     toast({

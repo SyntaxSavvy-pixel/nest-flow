@@ -91,12 +91,37 @@ const ExtensionAuth = () => {
 
       // Show success message
       setStatus('success');
-      setMessage('Authentication successful! You can now close this window.');
+      setMessage('Authentication successful! Redirecting to dashboard...');
 
-      // Auto-redirect to dashboard after 3 seconds
+      // Send message to extension popup to reload
+      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+        try {
+          chrome.runtime.sendMessage({
+            type: 'AUTH_STATE_CHANGED',
+            isAuthenticated: true,
+            syncToken: profile.syncToken,
+            userId: session.user.id,
+            userEmail: session.user.email
+          }, () => {
+            if (chrome.runtime.lastError) {
+              console.log('Extension not responding to auth state change');
+            }
+          });
+        } catch (err) {
+          console.log('Could not notify extension:', err);
+        }
+      }
+
+      // Send auth data to content script via postMessage
+      // This is the PRIMARY method for web-to-extension communication
+      window.postMessage(authData, window.location.origin);
+
+      console.log('📤 Sent TABKEEP_AUTH_SUCCESS via postMessage to content script');
+
+      // Auto-redirect to dashboard after 2 seconds
       setTimeout(() => {
-        navigate('/dashboard');
-      }, 3000);
+        navigate('/dashboard?source=extension');
+      }, 2000);
 
     } catch (error) {
       console.error('Extension auth error:', error);

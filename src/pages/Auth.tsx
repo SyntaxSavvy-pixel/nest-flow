@@ -20,13 +20,23 @@ const Auth = () => {
     toast
   } = useToast();
   useEffect(() => {
+    // Check if user came from extension
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('source');
+    const isFromExtension = source === 'extension';
+
     const {
       data: {
         subscription
       }
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
-        navigate("/dashboard");
+        // If from extension, go to extension-auth page to sync
+        if (isFromExtension) {
+          navigate("/extension-auth?source=extension");
+        } else {
+          navigate("/dashboard");
+        }
       }
     });
     supabase.auth.getSession().then(({
@@ -35,7 +45,12 @@ const Auth = () => {
       }
     }) => {
       if (session?.user) {
-        navigate("/dashboard");
+        // If from extension, go to extension-auth page to sync
+        if (isFromExtension) {
+          navigate("/extension-auth?source=extension");
+        } else {
+          navigate("/dashboard");
+        }
       }
     });
     return () => subscription.unsubscribe();
