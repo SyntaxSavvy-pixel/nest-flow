@@ -13,6 +13,7 @@ import Profile from "./pages/dashboard/Profile";
 import Themes from "./pages/dashboard/Themes";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import ExtensionAuth from "./pages/ExtensionAuth";
 import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/dashboard/vpn" element={<VPN />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           <Route path="/dashboard/themes" element={<Themes />} />
+          <Route path="/extension-auth" element={<ExtensionAuth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

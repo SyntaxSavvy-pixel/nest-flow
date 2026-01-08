@@ -1,27 +1,39 @@
-// User Profile Service - Avatar Management
+// User Profile Service - Avatar Management & Sync Token
 import { supabase } from "@/integrations/supabase/client";
+import { generateUniqueSyncToken, validateSyncToken } from "./syncToken";
 
 export interface UserProfile {
   avatarId?: string;
   firstName?: string;
   lastName?: string;
+  syncToken?: string; // WBES token for extension sync
 }
 
-// Get user profile data including avatar
+// Get user profile data including avatar and sync token
 export const getUserProfile = async (): Promise<UserProfile | null> => {
   try {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return null;
 
-    // Avatar is stored in user_metadata
+    // Get data from user_metadata
     const avatarId = user.user_metadata?.avatarId;
     const firstName = user.user_metadata?.firstName;
     const lastName = user.user_metadata?.lastName;
+    let syncToken = user.user_metadata?.syncToken;
+
+    // Generate sync token if user doesn't have one
+    if (!syncToken || !validateSyncToken(syncToken)) {
+      syncToken = await generateUniqueSyncToken();
+      await supabase.auth.updateUser({
+        data: { syncToken }
+      });
+    }
 
     return {
       avatarId,
       firstName,
       lastName,
+      syncToken,
     };
   } catch (error) {
     console.error("Error getting user profile:", error);
