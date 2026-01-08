@@ -1,9 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Bird } from "lucide-react";
 import { motion } from "framer-motion";
-import birdsImage from "@/assets/404-birds.png";
 
 const NotFound = () => {
   const location = useLocation();
@@ -55,22 +54,18 @@ const NotFound = () => {
           Error 404 Page not found
         </motion.p>
 
-        {/* Birds Image - Non-grabbable */}
+        {/* Birds Illustration */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
           className="mb-10 flex justify-center"
         >
-          <img
-            src={birdsImage}
-            alt=""
-            aria-hidden="true"
-            draggable={false}
-            className="w-full max-w-2xl rounded-2xl pointer-events-none select-none"
-            style={{ userSelect: "none", WebkitUserDrag: "none" } as React.CSSProperties}
-            onContextMenu={(e) => e.preventDefault()}
-          />
+          <div className="flex gap-8 items-center justify-center">
+            <Bird className="w-24 h-24 md:w-32 md:h-32 text-teal/30" />
+            <Bird className="w-32 h-32 md:w-40 md:h-40 text-teal/50" />
+            <Bird className="w-24 h-24 md:w-32 md:h-32 text-teal/30" />
+          </div>
         </motion.div>
 
         {/* Bottom section */}

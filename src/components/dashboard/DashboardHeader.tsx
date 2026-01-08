@@ -1,8 +1,11 @@
-import { LogOut, Crown } from "lucide-react";
+import { LogOut, Crown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useState, useEffect } from "react";
+import { getUserProfile, listenForAvatarChanges } from "@/lib/userProfile";
+import { getAvatarById } from "@/lib/pixelAvatars";
 
 interface DashboardHeaderProps {
   title: string;
@@ -14,6 +17,25 @@ interface DashboardHeaderProps {
 const DashboardHeader = ({ title, subtitle, isPro = false, userEmail }: DashboardHeaderProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [currentAvatarId, setCurrentAvatarId] = useState<string | undefined>();
+
+  // Load user avatar on mount
+  useEffect(() => {
+    const loadAvatar = async () => {
+      const profile = await getUserProfile();
+      if (profile?.avatarId) {
+        setCurrentAvatarId(profile.avatarId);
+      }
+    };
+    loadAvatar();
+
+    // Listen for avatar changes
+    const unsubscribe = listenForAvatarChanges((avatarId) => {
+      setCurrentAvatarId(avatarId);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -48,8 +70,19 @@ const DashboardHeader = ({ title, subtitle, isPro = false, userEmail }: Dashboar
           </div>
         )}
 
-        <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-semibold shadow-soft">
-          {getInitials(userEmail)}
+        <div
+          className="w-10 h-10 rounded-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shadow-soft cursor-pointer hover:border-primary/50 transition-all"
+          onClick={() => navigate("/dashboard/profile")}
+          title="Go to Profile"
+        >
+          {currentAvatarId && getAvatarById(currentAvatarId) ? (
+            <div
+              className="w-full h-full"
+              dangerouslySetInnerHTML={{ __html: getAvatarById(currentAvatarId)!.svg }}
+            />
+          ) : (
+            <User className="w-5 h-5 text-primary-foreground" />
+          )}
         </div>
 
         <Button

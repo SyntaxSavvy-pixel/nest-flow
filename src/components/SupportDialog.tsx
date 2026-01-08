@@ -48,42 +48,42 @@ const SupportDialog = ({ children }: SupportDialogProps) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">Contact Support</DialogTitle>
-          <DialogDescription className="text-base">
+          <DialogTitle className="font-display text-xl sm:text-2xl">Contact Support</DialogTitle>
+          <DialogDescription className="text-sm sm:text-base">
             For the fastest response, please reach out through the TabKeep extension.
           </DialogDescription>
         </DialogHeader>
-        
-        <div className="mt-4 space-y-3">
+
+        <div className="mt-2 sm:mt-4 space-y-2 sm:space-y-3">
           {supportOptions.map((option) => (
             <div
               key={option.title}
-              className="p-4 rounded-xl bg-muted/50 border border-border hover:bg-muted transition-colors"
+              className="p-3 sm:p-4 rounded-lg sm:rounded-xl bg-muted/50 border border-border hover:bg-muted transition-colors"
             >
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                  <option.icon className="w-5 h-5 text-primary-foreground" />
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
+                  <option.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-foreground">{option.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">{option.description}</p>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-foreground text-sm sm:text-base">{option.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">{option.description}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 p-4 bg-primary/10 rounded-xl border border-primary/20">
-          <p className="text-sm text-foreground font-medium mb-2">
+        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-primary/10 rounded-lg sm:rounded-xl border border-primary/20">
+          <p className="text-xs sm:text-sm text-foreground font-medium mb-2">
             Contact us through the extension
           </p>
-          <a 
-            href="https://chrome.google.com/webstore" 
-            target="_blank" 
+          <a
+            href="https://chrome.google.com/webstore"
+            target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium text-sm transition-colors"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium text-xs sm:text-sm transition-colors"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
             Open TabKeep Extension Page
           </a>
         </div>

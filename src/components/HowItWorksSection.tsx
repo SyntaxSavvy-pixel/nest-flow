@@ -1,7 +1,4 @@
 import { MousePointer, Feather, FolderOpen } from "lucide-react";
-import birdFlying from "@/assets/bird-flying.png";
-import birdCollecting from "@/assets/bird-collecting.png";
-import nestWithTabs from "@/assets/nest-with-tabs.png";
 import ScrollReveal from "./ScrollReveal";
 import FloatingLeaves from "./FloatingLeaves";
 import TiltCard from "./TiltCard";
@@ -13,21 +10,18 @@ const steps = [
     icon: MousePointer,
     title: "Open a tab",
     description: "Browse like normal. When you find something worth keeping, you'll know.",
-    illustration: birdFlying,
   },
   {
     number: "02",
     icon: Feather,
     title: "Bird collects it",
     description: "One click, and our friendly bird swoops in to save your tab. No fuss.",
-    illustration: birdCollecting,
   },
   {
     number: "03",
     icon: FolderOpen,
     title: "Safe in your nest",
     description: "Your tabs rest in organized groups — Now, Later, Someday. Ready when you are.",
-    illustration: nestWithTabs,
   },
 ];
 
@@ -95,17 +89,17 @@ const HowItWorksSection = () => {
                   
                   {/* Illustration with 3D Tilt */}
                   <div className="flex-1 flex justify-center w-full">
-                    <TiltCard 
+                    <TiltCard
                       className="w-full max-w-md"
                       tiltIntensity={8}
                     >
                       <div className="relative p-8 rounded-2xl bg-gradient-to-br from-cream to-cream-dark border border-border/30 shadow-soft">
-                        <motion.img 
-                          src={step.illustration} 
-                          alt={step.title}
-                          className="w-full max-w-[280px] mx-auto drop-shadow-lg"
+                        <motion.div
+                          className="w-full max-w-[280px] h-[280px] mx-auto flex items-center justify-center"
                           style={{ transform: "translateZ(50px)" }}
-                        />
+                        >
+                          <step.icon className="w-32 h-32 text-teal/30" />
+                        </motion.div>
                       </div>
                     </TiltCard>
                   </div>

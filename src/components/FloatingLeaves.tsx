@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import leafImage from "@/assets/leaf.png";
+import { Leaf as LeafIcon } from "lucide-react";
 
 interface LeafProps {
   delay?: number;
@@ -47,11 +47,9 @@ const Leaf = ({
         ease: [0.4, 0.0, 0.2, 1],
       }}
     >
-      <img
-        src={leafImage}
-        alt=""
-        style={{ width: size, height: 'auto' }}
-        className="drop-shadow-sm"
+      <LeafIcon
+        style={{ width: size, height: size }}
+        className="drop-shadow-sm text-teal/20"
       />
     </motion.div>
   );

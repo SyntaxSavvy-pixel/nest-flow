@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Mail, Bell, Key, Trash2, LogOut, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import AvatarPicker from "@/components/AvatarPicker";
+import { getUserProfile, updateUserAvatar } from "@/lib/userProfile";
+import { getAvatarById } from "@/lib/pixelAvatars";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -19,11 +22,39 @@ const Profile = () => {
     browser: true,
     weekly: false,
   });
+  const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
+  const [currentAvatarId, setCurrentAvatarId] = useState<string | undefined>();
+  const [userEmail, setUserEmail] = useState<string>("");
+
+  // Load user profile on mount
+  useEffect(() => {
+    const loadProfile = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUserEmail(user.email || "");
+        const profile = await getUserProfile();
+        if (profile?.avatarId) {
+          setCurrentAvatarId(profile.avatarId);
+        }
+      }
+    };
+    loadProfile();
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     toast.success("Logged out successfully");
     navigate("/auth");
+  };
+
+  const handleAvatarSelect = async (avatarId: string) => {
+    const success = await updateUserAvatar(avatarId);
+    if (success) {
+      setCurrentAvatarId(avatarId);
+      toast.success("Avatar updated successfully!");
+    } else {
+      toast.error("Failed to update avatar");
+    }
   };
 
   return (
@@ -38,15 +69,30 @@ const Profile = () => {
           <Card className="border-border/50">
             <CardContent className="p-6 text-center">
               <div className="relative inline-block">
-                <div className="w-24 h-24 rounded-full gradient-primary flex items-center justify-center mx-auto">
-                  <User className="w-12 h-12 text-primary-foreground" />
+                <div
+                  className="w-24 h-24 rounded-full overflow-hidden border-4 border-border/50 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mx-auto cursor-pointer hover:border-primary/50 transition-all"
+                  onClick={() => setAvatarPickerOpen(true)}
+                >
+                  {currentAvatarId && getAvatarById(currentAvatarId) ? (
+                    <div
+                      className="w-full h-full"
+                      dangerouslySetInnerHTML={{ __html: getAvatarById(currentAvatarId)!.svg }}
+                    />
+                  ) : (
+                    <User className="w-12 h-12 text-primary-foreground" />
+                  )}
                 </div>
-                <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:bg-secondary transition-colors">
+                <button
+                  onClick={() => setAvatarPickerOpen(true)}
+                  className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:bg-secondary transition-colors shadow-lg"
+                >
                   <Camera className="w-4 h-4 text-muted-foreground" />
                 </button>
               </div>
-              <h3 className="font-display text-xl font-bold text-foreground mt-4">John Doe</h3>
-              <p className="text-muted-foreground text-sm">john@example.com</p>
+              <h3 className="font-display text-xl font-bold text-foreground mt-4">
+                {userEmail ? userEmail.split('@')[0] : 'User'}
+              </h3>
+              <p className="text-muted-foreground text-sm">{userEmail || 'user@example.com'}</p>
               <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full bg-secondary text-sm">
                 <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
                 Free Plan
@@ -159,6 +205,14 @@ const Profile = () => {
           </Card>
         </motion.div>
       </div>
+
+      {/* Avatar Picker Modal */}
+      <AvatarPicker
+        open={avatarPickerOpen}
+        onClose={() => setAvatarPickerOpen(false)}
+        onSelect={handleAvatarSelect}
+        currentAvatarId={currentAvatarId}
+      />
     </DashboardLayout>
   );
 };

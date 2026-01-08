@@ -72,7 +72,25 @@ const HeroSection = () => {
         }}>
             <div className="relative">
               {/* Animated bird video */}
-              <video src={birdMascotVideo} autoPlay muted playsInline className="relative w-80 md:w-96 lg:w-[450px]" />
+              <video
+                src={birdMascotVideo}
+                autoPlay
+                muted
+                playsInline
+                controlsList="nodownload nofullscreen noremoteplayback"
+                disablePictureInPicture
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                className="relative w-80 md:w-96 lg:w-[450px] select-none"
+                style={{ userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
+              />
+              {/* Transparent overlay to prevent interactions */}
+              <div
+                className="absolute inset-0 w-80 md:w-96 lg:w-[450px]"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
+              />
             </div>
           </motion.div>
         </div>

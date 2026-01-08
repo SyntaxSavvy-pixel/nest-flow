@@ -1,4 +1,4 @@
-import { Check, Zap } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "./ScrollReveal";
 import { motion } from "framer-motion";

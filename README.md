@@ -1,73 +1,158 @@
-# Welcome to your Lovable project
+# TabKeep Web Dashboard
 
-## Project info
+> **Too many tabs. One calm place.**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The web dashboard for TabKeep - a beautiful tab management solution built with React, TypeScript, and modern web technologies.
 
-## How can I edit this code?
+## 🚀 Quick Start
 
-There are several ways of editing your application.
+```bash
+# Install dependencies
+npm install
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Open http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+## 📦 What's Inside
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Pages (11 total)
 
-**Use GitHub Codespaces**
+**Public Pages:**
+- `/` - Landing page with animations
+- `/auth` - Login/signup page
+- `/privacy` - Privacy policy
+- `/terms` - Terms of service
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+**Dashboard Pages:**
+- `/dashboard` - Main dashboard
+- `/dashboard/analytics` - Tab analytics & charts
+- `/dashboard/subscription` - Pricing & subscription management
+- `/dashboard/vpn` - VPN integration (Sembold)
+- `/dashboard/profile` - User profile & settings
+- `/dashboard/themes` - Theme customization
 
-## What technologies are used for this project?
+### Features
 
-This project is built with:
+✅ **Authentication** - Google OAuth + Email/Password
+✅ **Dashboard** - Stats, analytics, recent activity
+✅ **Analytics** - Tab usage charts & insights
+✅ **VPN Integration** - Sembold VPN partnership
+✅ **Theme System** - 6 color themes + dark/light mode
+✅ **Subscription** - Free, Pro, Pro Annual, Lifetime plans
+✅ **Profile Management** - Settings & preferences
+✅ **Responsive Design** - Mobile-friendly
+✅ **Animations** - Framer Motion & scroll effects
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Components
 
-## How can I deploy this project?
+- **74+ UI Components** - shadcn/ui library
+- **Custom Components** - Landing page elements
+- **Dashboard Components** - Specialized layouts
+- **Hooks** - Custom React hooks
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 🛠️ Tech Stack
 
-## Can I connect a custom domain to my Lovable project?
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool & dev server
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - Component library
+- **Supabase** - Backend & authentication
+- **Framer Motion** - Animations
+- **React Router** - Client-side routing
+- **React Hook Form** - Form handling
+- **Recharts** - Data visualization
 
-Yes, you can!
+## 📁 Project Structure
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+├── pages/              # Route pages
+│   ├── Index.tsx      # Landing page
+│   ├── Auth.tsx       # Authentication
+│   ├── Dashboard.tsx  # Dashboard home
+│   └── dashboard/     # Dashboard sub-pages
+├── components/         # Reusable components
+│   ├── ui/            # shadcn/ui components
+│   └── dashboard/     # Dashboard-specific
+├── hooks/             # Custom hooks
+├── integrations/      # Third-party integrations
+└── lib/               # Utilities
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 🎨 Design System
+
+### Brand Colors
+- **Primary**: Teal (#14B8A6)
+- **Accent**: Purple/Blue gradient (#6366F1 → #8B5CF6)
+
+### Typography
+- **Display**: Fraunces (serif)
+- **Body**: DM Sans (sans-serif)
+
+### Themes
+- 6 color themes: Teal, Blue, Purple, Rose, Orange, Green
+- Light/Dark/System mode
+
+## 🔧 Development
+
+### Available Scripts
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Build for production
+npm run build:dev    # Build in dev mode
+npm run lint         # Run ESLint
+npm run preview      # Preview production build
+```
+
+### Environment Variables
+
+Create a `.env` file with your own Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+```
+
+📝 **Need help setting up Supabase?** See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for complete instructions on creating your own Supabase project.
+
+## 🚢 Deployment
+
+### Recommended Platforms
+
+- **Vercel** (Recommended)
+- **Netlify**
+- **Cloudflare Pages**
+
+### Deploy to Vercel
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+## 🔗 Related Projects
+
+- **Chrome Extension** - Tab management extension (`../extension/`)
+- **Main Repo** - [TabKeep App](../README.md)
+
+## 📄 License
+
+Copyright © 2026 TabKeep
+
+## 🔗 Links
+
+- **Website**: [tabkeep.app](https://tabkeep.app)
+- **Twitter**: [@tabkeep](https://twitter.com/tabkeep)
+- **Extension**: Chrome Web Store (Coming Soon)
+
+---
+
+**Built with ❤️ for a calmer browsing experience.**
