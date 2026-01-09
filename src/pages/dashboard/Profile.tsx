@@ -52,6 +52,16 @@ const Profile = () => {
     if (success) {
       setCurrentAvatarId(avatarId);
       toast.success("Avatar updated successfully!");
+
+      // Notify extension about profile update
+      if (window.__TABKEEP_EXTENSION_INSTALLED__) {
+        window.postMessage({
+          type: 'TABKEEP_PROFILE_UPDATE',
+          avatarId: avatarId,
+          timestamp: Date.now()
+        }, window.location.origin);
+        console.log('🎨 Profile update sent to extension:', avatarId);
+      }
     } else {
       toast.error("Failed to update avatar");
     }
