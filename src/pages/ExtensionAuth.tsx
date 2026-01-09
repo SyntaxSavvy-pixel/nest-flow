@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { getUserProfile } from "@/lib/userProfile";
+import { getAvatarById } from "@/lib/pixelAvatars";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 
 /**
@@ -39,13 +40,28 @@ const ExtensionAuth = () => {
         throw new Error('Failed to generate sync token');
       }
 
+      // Convert avatar to data URL if available
+      let avatarImageUrl = '';
+      if (profile.avatarId) {
+        const avatar = getAvatarById(profile.avatarId);
+        if (avatar) {
+          // Create a data URL from the SVG
+          const svgBlob = new Blob([avatar.svg], { type: 'image/svg+xml' });
+          avatarImageUrl = await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.readAsDataURL(svgBlob);
+          });
+        }
+      }
+
       // Send sync token and user data to extension
       const authData = {
         type: 'TABKEEP_AUTH_SUCCESS',
         syncToken: profile.syncToken,
         userId: session.user.id,
         userEmail: session.user.email,
-        avatarId: profile.avatarId,
+        avatarImage: avatarImageUrl,
         timestamp: Date.now(),
       };
 
@@ -67,13 +83,18 @@ const ExtensionAuth = () => {
       // Also store in chrome.storage.sync if available
       if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
         try {
-          await chrome.storage.sync.set({
+          const storageData: Record<string, any> = {
             tabkeepSyncToken: profile.syncToken,
             tabkeepUserId: session.user.id,
             tabkeepUserEmail: session.user.email,
-            userAvatar: profile.avatarId,
             authTimestamp: Date.now(),
-          });
+          };
+
+          if (avatarImageUrl) {
+            storageData.avatarImage = avatarImageUrl;
+          }
+
+          await chrome.storage.sync.set(storageData);
         } catch (err) {
           console.log('Could not save to chrome storage:', err);
         }

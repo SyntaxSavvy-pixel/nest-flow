@@ -55,12 +55,23 @@ const Profile = () => {
 
       // Notify extension about profile update
       if (window.__TABKEEP_EXTENSION_INSTALLED__) {
-        window.postMessage({
-          type: 'TABKEEP_PROFILE_UPDATE',
-          avatarId: avatarId,
-          timestamp: Date.now()
-        }, window.location.origin);
-        console.log('🎨 Profile update sent to extension:', avatarId);
+        // Get the avatar SVG and convert to data URL
+        const avatar = getAvatarById(avatarId);
+        if (avatar) {
+          // Create a data URL from the SVG
+          const svgBlob = new Blob([avatar.svg], { type: 'image/svg+xml' });
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const dataUrl = reader.result as string;
+            window.postMessage({
+              type: 'TABKEEP_PROFILE_UPDATE',
+              avatarImage: dataUrl,
+              timestamp: Date.now()
+            }, window.location.origin);
+            console.log('🎨 Profile update sent to extension (data URL)');
+          };
+          reader.readAsDataURL(svgBlob);
+        }
       }
     } else {
       toast.error("Failed to update avatar");
