@@ -76,9 +76,10 @@ const DashboardHeader = ({ title, subtitle, isPro = false, userEmail }: Dashboar
           title="Go to Profile"
         >
           {currentAvatarId && getAvatarById(currentAvatarId) ? (
-            <div
-              className="w-full h-full"
-              dangerouslySetInnerHTML={{ __html: getAvatarById(currentAvatarId)!.svg }}
+            <img
+              src={getAvatarById(currentAvatarId)!.imageUrl}
+              alt="Profile"
+              className="w-full h-full object-cover"
             />
           ) : (
             <User className="w-5 h-5 text-primary-foreground" />

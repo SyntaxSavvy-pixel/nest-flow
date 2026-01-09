@@ -18,10 +18,15 @@ const AvatarPicker = ({ open, onClose, onSelect, currentAvatarId }: AvatarPicker
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState<string | undefined>(currentAvatarId);
 
-  // Filter avatars based on search (could be extended to search by colors, style, etc.)
+  // Filter avatars based on search (by name, id, or category)
   const filteredAvatars = pixelAvatars.filter((avatar) => {
     if (!searchQuery) return true;
-    return avatar.id.toLowerCase().includes(searchQuery.toLowerCase());
+    const query = searchQuery.toLowerCase();
+    return (
+      avatar.id.toLowerCase().includes(query) ||
+      avatar.name.toLowerCase().includes(query) ||
+      avatar.category.toLowerCase().includes(query)
+    );
   });
 
   const handleSelect = (avatarId: string) => {
@@ -81,9 +86,11 @@ const AvatarPicker = ({ open, onClose, onSelect, currentAvatarId }: AvatarPicker
                     }
                   `}
                 >
-                  <div
-                    className="w-full h-full"
-                    dangerouslySetInnerHTML={{ __html: avatar.svg }}
+                  <img
+                    src={avatar.imageUrl}
+                    alt={avatar.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   {selectedAvatar === avatar.id && (
                     <motion.div

@@ -1,404 +1,103 @@
-// Pixel Art Avatar Library - NFT Style
-// This generates unique pixel art avatars dynamically
+// Pixel Art Avatar Library - Real Image Files
+// All avatars are stored in /public/avatars/
 
 export interface PixelAvatar {
   id: string;
-  svg: string;
-  colors: string[];
+  name: string;
+  imageUrl: string;
+  category: 'animal' | 'human' | 'fantasy' | 'robot' | 'other';
 }
 
-// Color palettes for different avatar styles
-const colorPalettes = {
-  skin: ['#FFD1B3', '#F4C2A0', '#E8B796', '#D9A889', '#C89A7C', '#8B6F47'],
-  hair: ['#1A1A1A', '#3D2817', '#654321', '#8B4513', '#D2691E', '#FFD700', '#FF6347', '#4169E1', '#32CD32', '#FF69B4'],
-  eyes: ['#000000', '#2C1608', '#1E90FF', '#32CD32', '#FF69B4', '#9370DB'],
-  accessories: ['#FFD700', '#C0C0C0', '#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#00FFFF', '#FFA500'],
-  background: ['#FF6B9D', '#4ECDC4', '#95E1D3', '#F38181', '#AA96DA', '#FCBAD3', '#FFE66D', '#A8E6CF']
-};
+// Avatar library - all using actual image files from public/avatars/
+export const pixelAvatars: PixelAvatar[] = [
+  // Animals
+  { id: 'cat-orange', name: 'Orange Cat', imageUrl: '/avatars/cat-orange.png', category: 'animal' },
+  { id: 'cat-black', name: 'Black Cat', imageUrl: '/avatars/cat-black.png', category: 'animal' },
+  { id: 'cat-white', name: 'White Cat', imageUrl: '/avatars/cat-white.png', category: 'animal' },
+  { id: 'dog-brown', name: 'Brown Dog', imageUrl: '/avatars/dog-brown.png', category: 'animal' },
+  { id: 'dog-golden', name: 'Golden Dog', imageUrl: '/avatars/dog-golden.png', category: 'animal' },
+  { id: 'bunny-white', name: 'White Bunny', imageUrl: '/avatars/bunny-white.png', category: 'animal' },
+  { id: 'bunny-pink', name: 'Pink Bunny', imageUrl: '/avatars/bunny-pink.png', category: 'animal' },
+  { id: 'bear-brown', name: 'Brown Bear', imageUrl: '/avatars/bear-brown.png', category: 'animal' },
+  { id: 'bear-panda', name: 'Panda Bear', imageUrl: '/avatars/bear-panda.png', category: 'animal' },
+  { id: 'fox-orange', name: 'Orange Fox', imageUrl: '/avatars/fox-orange.png', category: 'animal' },
+  { id: 'owl-brown', name: 'Brown Owl', imageUrl: '/avatars/owl-brown.png', category: 'animal' },
+  { id: 'penguin', name: 'Penguin', imageUrl: '/avatars/penguin.png', category: 'animal' },
+  { id: 'monkey', name: 'Monkey', imageUrl: '/avatars/monkey.png', category: 'animal' },
+  { id: 'koala', name: 'Koala', imageUrl: '/avatars/koala.png', category: 'animal' },
+  { id: 'tiger', name: 'Tiger', imageUrl: '/avatars/tiger.png', category: 'animal' },
 
-// Generate a pixel avatar SVG
-const generatePixelAvatar = (id: number): PixelAvatar => {
-  const seed = id;
-  const skinColor = colorPalettes.skin[seed % colorPalettes.skin.length];
-  const hairColor = colorPalettes.hair[(seed * 2) % colorPalettes.hair.length];
-  const eyeColor = colorPalettes.eyes[(seed * 3) % colorPalettes.eyes.length];
-  const bgColor = colorPalettes.background[(seed * 5) % colorPalettes.background.length];
-  const accessoryColor = colorPalettes.accessories[(seed * 7) % colorPalettes.accessories.length];
+  // Humans
+  { id: 'boy-blonde', name: 'Blonde Boy', imageUrl: '/avatars/boy-blonde.png', category: 'human' },
+  { id: 'boy-brown', name: 'Brown Hair Boy', imageUrl: '/avatars/boy-brown.png', category: 'human' },
+  { id: 'boy-black', name: 'Black Hair Boy', imageUrl: '/avatars/boy-black.png', category: 'human' },
+  { id: 'girl-blonde', name: 'Blonde Girl', imageUrl: '/avatars/girl-blonde.png', category: 'human' },
+  { id: 'girl-brown', name: 'Brown Hair Girl', imageUrl: '/avatars/girl-brown.png', category: 'human' },
+  { id: 'girl-black', name: 'Black Hair Girl', imageUrl: '/avatars/girl-black.png', category: 'human' },
+  { id: 'girl-pink', name: 'Pink Hair Girl', imageUrl: '/avatars/girl-pink.png', category: 'human' },
+  { id: 'man-beard', name: 'Bearded Man', imageUrl: '/avatars/man-beard.png', category: 'human' },
+  { id: 'woman-redhead', name: 'Red Hair Woman', imageUrl: '/avatars/woman-redhead.png', category: 'human' },
+  { id: 'person-glasses', name: 'Person with Glasses', imageUrl: '/avatars/person-glasses.png', category: 'human' },
 
-  // Different avatar styles based on id
-  const style = seed % 10;
+  // Fantasy
+  { id: 'alien-green', name: 'Green Alien', imageUrl: '/avatars/alien-green.png', category: 'fantasy' },
+  { id: 'alien-blue', name: 'Blue Alien', imageUrl: '/avatars/alien-blue.png', category: 'fantasy' },
+  { id: 'alien-purple', name: 'Purple Alien', imageUrl: '/avatars/alien-purple.png', category: 'fantasy' },
+  { id: 'wizard-blue', name: 'Blue Wizard', imageUrl: '/avatars/wizard-blue.png', category: 'fantasy' },
+  { id: 'wizard-purple', name: 'Purple Wizard', imageUrl: '/avatars/wizard-purple.png', category: 'fantasy' },
+  { id: 'dragon-red', name: 'Red Dragon', imageUrl: '/avatars/dragon-red.png', category: 'fantasy' },
+  { id: 'dragon-green', name: 'Green Dragon', imageUrl: '/avatars/dragon-green.png', category: 'fantasy' },
+  { id: 'unicorn-white', name: 'White Unicorn', imageUrl: '/avatars/unicorn-white.png', category: 'fantasy' },
+  { id: 'unicorn-rainbow', name: 'Rainbow Unicorn', imageUrl: '/avatars/unicorn-rainbow.png', category: 'fantasy' },
+  { id: 'fairy-pink', name: 'Pink Fairy', imageUrl: '/avatars/fairy-pink.png', category: 'fantasy' },
+  { id: 'elf-green', name: 'Green Elf', imageUrl: '/avatars/elf-green.png', category: 'fantasy' },
+  { id: 'vampire', name: 'Vampire', imageUrl: '/avatars/vampire.png', category: 'fantasy' },
+  { id: 'ghost-white', name: 'White Ghost', imageUrl: '/avatars/ghost-white.png', category: 'fantasy' },
+  { id: 'zombie', name: 'Zombie', imageUrl: '/avatars/zombie.png', category: 'fantasy' },
 
-  let pixels = '';
+  // Robots
+  { id: 'robot-silver', name: 'Silver Robot', imageUrl: '/avatars/robot-silver.png', category: 'robot' },
+  { id: 'robot-blue', name: 'Blue Robot', imageUrl: '/avatars/robot-blue.png', category: 'robot' },
+  { id: 'robot-red', name: 'Red Robot', imageUrl: '/avatars/robot-red.png', category: 'robot' },
+  { id: 'robot-green', name: 'Green Robot', imageUrl: '/avatars/robot-green.png', category: 'robot' },
+  { id: 'android', name: 'Android', imageUrl: '/avatars/android.png', category: 'robot' },
+  { id: 'cyborg', name: 'Cyborg', imageUrl: '/avatars/cyborg.png', category: 'robot' },
 
-  // Generate different pixel patterns based on style
-  switch(style) {
-    case 0: // Classic human
-      pixels = `
-        <!-- Hair -->
-        <rect x="2" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="1" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="7" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Face -->
-        <rect x="2" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="2" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${skinColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Mouth -->
-        <rect x="3" y="5" width="1" height="1" fill="#000000" opacity="0.3"/>
-        <rect x="4" y="5" width="1" height="1" fill="#000000" opacity="0.3"/>
-        <rect x="5" y="5" width="1" height="1" fill="#000000" opacity="0.3"/>
-        <rect x="2" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="2" y="5" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="5" width="1" height="1" fill="${skinColor}"/>
-        <rect x="2" y="6" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="6" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="6" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="6" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="6" width="1" height="1" fill="${skinColor}"/>
-      `;
-      break;
-    case 1: // Robot
-      pixels = `
-        <!-- Antenna -->
-        <rect x="4" y="0" width="1" height="1" fill="${accessoryColor}"/>
-        <!-- Head -->
-        <rect x="2" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Screen -->
-        <rect x="3" y="2" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${accessoryColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Body -->
-        <rect x="2" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${hairColor}"/>
-        <!-- Mouth -->
-        <rect x="3" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-        <rect x="4" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-        <rect x="5" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-      `;
-      break;
-    case 2: // Cat
-      pixels = `
-        <!-- Ears -->
-        <rect x="1" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="0" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="0" width="1" height="1" fill="${hairColor}"/>
-        <rect x="7" y="1" width="1" height="1" fill="${hairColor}"/>
-        <!-- Head -->
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${hairColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Nose -->
-        <rect x="4" y="4" width="1" height="1" fill="#FF69B4"/>
-        <!-- Face -->
-        <rect x="2" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="5" width="1" height="1" fill="${hairColor}"/>
-      `;
-      break;
-    case 3: // Alien
-      pixels = `
-        <!-- Antennae -->
-        <rect x="2" y="0" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="0" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="2" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <!-- Head -->
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Large Eyes -->
-        <rect x="2" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Face -->
-        <rect x="2" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="5" width="1" height="1" fill="${hairColor}"/>
-      `;
-      break;
-    case 4: // Punk
-      pixels = `
-        <!-- Mohawk -->
-        <rect x="4" y="0" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <!-- Face -->
-        <rect x="2" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${skinColor}"/>
-        <!-- Sunglasses -->
-        <rect x="2" y="3" width="1" height="1" fill="#000000"/>
-        <rect x="3" y="3" width="1" height="1" fill="#000000"/>
-        <rect x="4" y="3" width="1" height="1" fill="#000000"/>
-        <rect x="5" y="3" width="1" height="1" fill="#000000"/>
-        <rect x="6" y="3" width="1" height="1" fill="#000000"/>
-        <!-- Face Bottom -->
-        <rect x="2" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${skinColor}"/>
-        <!-- Mouth -->
-        <rect x="3" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-        <rect x="4" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-        <rect x="5" y="5" width="1" height="1" fill="#000000" opacity="0.4"/>
-        <!-- Piercing -->
-        <rect x="4" y="6" width="1" height="1" fill="${accessoryColor}"/>
-      `;
-      break;
-    case 5: // Ninja
-      pixels = `
-        <!-- Headband -->
-        <rect x="2" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <!-- Mask -->
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Mask continues -->
-        <rect x="2" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="5" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="5" width="1" height="1" fill="${hairColor}"/>
-      `;
-      break;
-    case 6: // Bear
-      pixels = `
-        <!-- Ears -->
-        <rect x="1" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="7" y="1" width="1" height="1" fill="${hairColor}"/>
-        <!-- Head -->
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="3" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${hairColor}"/>
-        <!-- Face -->
-        <rect x="3" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${skinColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Snout -->
-        <rect x="2" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="5" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="5" width="1" height="1" fill="${skinColor}"/>
-        <!-- Nose -->
-        <rect x="4" y="5" width="1" height="1" fill="#000000"/>
-      `;
-      break;
-    case 7: // Wizard
-      pixels = `
-        <!-- Hat -->
-        <rect x="4" y="0" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Face -->
-        <rect x="2" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${skinColor}"/>
-        <!-- Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${eyeColor}"/>
-        <!-- Beard -->
-        <rect x="2" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="2" y="5" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="5" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="5" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="5" width="1" height="1" fill="${accessoryColor}"/>
-      `;
-      break;
-    case 8: // Astronaut
-      pixels = `
-        <!-- Helmet -->
-        <rect x="2" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="2" y="2" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${accessoryColor}"/>
-        <!-- Visor -->
-        <rect x="3" y="2" width="1" height="1" fill="#87CEEB"/>
-        <rect x="4" y="2" width="1" height="1" fill="#87CEEB"/>
-        <rect x="5" y="2" width="1" height="1" fill="#87CEEB}"/>
-        <rect x="3" y="3" width="1" height="1" fill="#87CEEB"/>
-        <rect x="4" y="3" width="1" height="1" fill="#87CEEB"/>
-        <rect x="5" y="3" width="1" height="1" fill="#87CEEB"/>
-        <!-- Reflection -->
-        <rect x="3" y="2" width="1" height="1" fill="#FFFFFF" opacity="0.5"/>
-        <!-- Helmet Bottom -->
-        <rect x="2" y="3" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="2" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${accessoryColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${accessoryColor}"/>
-      `;
-      break;
-    case 9: // Vampire
-      pixels = `
-        <!-- Hair -->
-        <rect x="2" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="3" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="4" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="5" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="1" width="1" height="1" fill="${hairColor}"/>
-        <rect x="2" y="2" width="1" height="1" fill="${hairColor}"/>
-        <rect x="6" y="2" width="1" height="1" fill="${hairColor}"/>
-        <!-- Face -->
-        <rect x="3" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="2" width="1" height="1" fill="${skinColor}"/>
-        <rect x="2" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="3" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="3" width="1" height="1" fill="${skinColor}"/>
-        <!-- Red Eyes -->
-        <rect x="3" y="3" width="1" height="1" fill="#FF0000"/>
-        <rect x="5" y="3" width="1" height="1" fill="#FF0000"/>
-        <!-- Fangs -->
-        <rect x="2" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="4" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="5" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="6" y="4" width="1" height="1" fill="${skinColor}"/>
-        <rect x="3" y="5" width="1" height="1" fill="#FFFFFF"/>
-        <rect x="5" y="5" width="1" height="1" fill="#FFFFFF"/>
-      `;
-      break;
-    default:
-      pixels = '';
-  }
-
-  const svg = `<svg width="100%" height="100%" viewBox="0 0 9 8" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-    <rect x="0" y="0" width="9" height="8" fill="${bgColor}"/>
-    ${pixels}
-  </svg>`;
-
-  return {
-    id: `pixel-avatar-${id}`,
-    svg,
-    colors: [skinColor, hairColor, eyeColor, bgColor, accessoryColor]
-  };
-};
-
-// Generate 150 unique pixel avatars
-export const pixelAvatars: PixelAvatar[] = Array.from({ length: 150 }, (_, i) => generatePixelAvatar(i));
+  // Other
+  { id: 'ninja-black', name: 'Black Ninja', imageUrl: '/avatars/ninja-black.png', category: 'other' },
+  { id: 'ninja-red', name: 'Red Ninja', imageUrl: '/avatars/ninja-red.png', category: 'other' },
+  { id: 'pirate', name: 'Pirate', imageUrl: '/avatars/pirate.png', category: 'other' },
+  { id: 'astronaut', name: 'Astronaut', imageUrl: '/avatars/astronaut.png', category: 'other' },
+  { id: 'superhero-red', name: 'Red Superhero', imageUrl: '/avatars/superhero-red.png', category: 'other' },
+  { id: 'superhero-blue', name: 'Blue Superhero', imageUrl: '/avatars/superhero-blue.png', category: 'other' },
+  { id: 'detective', name: 'Detective', imageUrl: '/avatars/detective.png', category: 'other' },
+  { id: 'chef', name: 'Chef', imageUrl: '/avatars/chef.png', category: 'other' },
+  { id: 'artist', name: 'Artist', imageUrl: '/avatars/artist.png', category: 'other' },
+  { id: 'musician', name: 'Musician', imageUrl: '/avatars/musician.png', category: 'other' },
+];
 
 // Helper function to get avatar by ID
 export const getAvatarById = (id: string): PixelAvatar | undefined => {
   return pixelAvatars.find(avatar => avatar.id === id);
 };
 
+// Helper function to get avatar by category
+export const getAvatarsByCategory = (category: PixelAvatar['category']): PixelAvatar[] => {
+  return pixelAvatars.filter(avatar => avatar.category === category);
+};
+
 // Helper function to get random avatar
 export const getRandomAvatar = (): PixelAvatar => {
   const randomIndex = Math.floor(Math.random() * pixelAvatars.length);
   return pixelAvatars[randomIndex];
+};
+
+// Helper function to convert avatar to data URL (for extension sync)
+export const getAvatarDataUrl = async (avatarId: string): Promise<string | null> => {
+  const avatar = getAvatarById(avatarId);
+  if (!avatar) return null;
+
+  // For now, return the image URL directly
+  // In production, you might want to fetch and convert to data URL
+  return avatar.imageUrl;
 };

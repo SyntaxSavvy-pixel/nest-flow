@@ -40,18 +40,13 @@ const ExtensionAuth = () => {
         throw new Error('Failed to generate sync token');
       }
 
-      // Convert avatar to data URL if available
+      // Get avatar image URL if available
       let avatarImageUrl = '';
       if (profile.avatarId) {
         const avatar = getAvatarById(profile.avatarId);
         if (avatar) {
-          // Create a data URL from the SVG
-          const svgBlob = new Blob([avatar.svg], { type: 'image/svg+xml' });
-          avatarImageUrl = await new Promise<string>((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.readAsDataURL(svgBlob);
-          });
+          // Use the full image URL for the extension
+          avatarImageUrl = window.location.origin + avatar.imageUrl;
         }
       }
 

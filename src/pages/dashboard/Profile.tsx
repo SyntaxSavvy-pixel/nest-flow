@@ -55,22 +55,17 @@ const Profile = () => {
 
       // Notify extension about profile update
       if (window.__TABKEEP_EXTENSION_INSTALLED__) {
-        // Get the avatar SVG and convert to data URL
+        // Get the avatar image URL
         const avatar = getAvatarById(avatarId);
         if (avatar) {
-          // Create a data URL from the SVG
-          const svgBlob = new Blob([avatar.svg], { type: 'image/svg+xml' });
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            const dataUrl = reader.result as string;
-            window.postMessage({
-              type: 'TABKEEP_PROFILE_UPDATE',
-              avatarImage: dataUrl,
-              timestamp: Date.now()
-            }, window.location.origin);
-            console.log('🎨 Profile update sent to extension (data URL)');
-          };
-          reader.readAsDataURL(svgBlob);
+          // Send the image URL directly to the extension
+          const fullImageUrl = window.location.origin + avatar.imageUrl;
+          window.postMessage({
+            type: 'TABKEEP_PROFILE_UPDATE',
+            avatarImage: fullImageUrl,
+            timestamp: Date.now()
+          }, window.location.origin);
+          console.log('🎨 Profile update sent to extension (image URL):', fullImageUrl);
         }
       }
     } else {
@@ -95,9 +90,10 @@ const Profile = () => {
                   onClick={() => setAvatarPickerOpen(true)}
                 >
                   {currentAvatarId && getAvatarById(currentAvatarId) ? (
-                    <div
-                      className="w-full h-full"
-                      dangerouslySetInnerHTML={{ __html: getAvatarById(currentAvatarId)!.svg }}
+                    <img
+                      src={getAvatarById(currentAvatarId)!.imageUrl}
+                      alt="Profile Avatar"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <User className="w-12 h-12 text-primary-foreground" />
