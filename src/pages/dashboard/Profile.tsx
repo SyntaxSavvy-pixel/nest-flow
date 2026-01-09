@@ -14,6 +14,7 @@ import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import AvatarPicker from "@/components/AvatarPicker";
 import { getUserProfile, updateUserAvatar } from "@/lib/userProfile";
 import { getAvatarById } from "@/lib/pixelAvatars";
+import { sendAvatarUpdate } from "@/lib/extensionBridge";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -54,19 +55,11 @@ const Profile = () => {
       toast.success("Avatar updated successfully!");
 
       // Notify extension about profile update
-      if (window.__TABKEEP_EXTENSION_INSTALLED__) {
-        // Get the avatar image URL
-        const avatar = getAvatarById(avatarId);
-        if (avatar) {
-          // Send the image URL directly to the extension
-          const fullImageUrl = window.location.origin + avatar.imageUrl;
-          window.postMessage({
-            type: 'TABKEEP_PROFILE_UPDATE',
-            avatarImage: fullImageUrl,
-            timestamp: Date.now()
-          }, window.location.origin);
-          console.log('🎨 Profile update sent to extension (image URL):', fullImageUrl);
-        }
+      const avatar = getAvatarById(avatarId);
+      if (avatar) {
+        // Send the image URL directly to the extension
+        const fullImageUrl = window.location.origin + avatar.imageUrl;
+        sendAvatarUpdate(fullImageUrl);
       }
     } else {
       toast.error("Failed to update avatar");

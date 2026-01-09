@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { getUserProfile } from "@/lib/userProfile";
 import { getAvatarById } from "@/lib/pixelAvatars";
+import { sendAuthData } from "@/lib/extensionBridge";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 
 /**
@@ -50,30 +51,13 @@ const ExtensionAuth = () => {
         }
       }
 
-      // Send sync token and user data to extension
-      const authData = {
-        type: 'TABKEEP_AUTH_SUCCESS',
+      // Send sync token and user data to extension via postMessage bridge
+      sendAuthData({
         syncToken: profile.syncToken,
         userId: session.user.id,
         userEmail: session.user.email,
         avatarImage: avatarImageUrl,
-        timestamp: Date.now(),
-      };
-
-      // Try to communicate with extension via chrome.runtime
-      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-        try {
-          chrome.runtime.sendMessage(authData, (response) => {
-            if (chrome.runtime.lastError) {
-              console.log('Extension not installed or not responding');
-            } else {
-              console.log('Auth data sent to extension:', response);
-            }
-          });
-        } catch (err) {
-          console.log('Could not send message to extension:', err);
-        }
-      }
+      });
 
       // Also store in chrome.storage.sync if available
       if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
@@ -100,39 +84,9 @@ const ExtensionAuth = () => {
       localStorage.setItem('tabkeep-user-id', session.user.id);
       localStorage.setItem('tabkeep-user-email', session.user.email || '');
 
-      // Broadcast to any listening tabs/windows
-      const channel = new BroadcastChannel('tabkeep-auth');
-      channel.postMessage(authData);
-      channel.close();
-
       // Show success message
       setStatus('success');
       setMessage('Authentication successful! Redirecting to dashboard...');
-
-      // Send message to extension popup to reload
-      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-        try {
-          chrome.runtime.sendMessage({
-            type: 'AUTH_STATE_CHANGED',
-            isAuthenticated: true,
-            syncToken: profile.syncToken,
-            userId: session.user.id,
-            userEmail: session.user.email
-          }, () => {
-            if (chrome.runtime.lastError) {
-              console.log('Extension not responding to auth state change');
-            }
-          });
-        } catch (err) {
-          console.log('Could not notify extension:', err);
-        }
-      }
-
-      // Send auth data to content script via postMessage
-      // This is the PRIMARY method for web-to-extension communication
-      window.postMessage(authData, window.location.origin);
-
-      console.log('📤 Sent TABKEEP_AUTH_SUCCESS via postMessage to content script');
 
       // Auto-redirect to dashboard after 2 seconds
       setTimeout(() => {
