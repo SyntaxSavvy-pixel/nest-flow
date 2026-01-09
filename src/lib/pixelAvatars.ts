@@ -5,75 +5,45 @@ export interface PixelAvatar {
   id: string;
   name: string;
   imageUrl: string;
-  category: 'animal' | 'human' | 'fantasy' | 'robot' | 'other';
+  category: 'animal' | 'fantasy' | 'icon' | 'potion' | 'other';
 }
 
 // Avatar library - all using actual image files from public/avatars/
 export const pixelAvatars: PixelAvatar[] = [
   // Animals
-  { id: 'cat-orange', name: 'Orange Cat', imageUrl: '/avatars/cat-orange.png', category: 'animal' },
-  { id: 'cat-black', name: 'Black Cat', imageUrl: '/avatars/cat-black.png', category: 'animal' },
-  { id: 'cat-white', name: 'White Cat', imageUrl: '/avatars/cat-white.png', category: 'animal' },
-  { id: 'dog-brown', name: 'Brown Dog', imageUrl: '/avatars/dog-brown.png', category: 'animal' },
-  { id: 'dog-golden', name: 'Golden Dog', imageUrl: '/avatars/dog-golden.png', category: 'animal' },
-  { id: 'bunny-white', name: 'White Bunny', imageUrl: '/avatars/bunny-white.png', category: 'animal' },
-  { id: 'bunny-pink', name: 'Pink Bunny', imageUrl: '/avatars/bunny-pink.png', category: 'animal' },
-  { id: 'bear-brown', name: 'Brown Bear', imageUrl: '/avatars/bear-brown.png', category: 'animal' },
-  { id: 'bear-panda', name: 'Panda Bear', imageUrl: '/avatars/bear-panda.png', category: 'animal' },
-  { id: 'fox-orange', name: 'Orange Fox', imageUrl: '/avatars/fox-orange.png', category: 'animal' },
-  { id: 'owl-brown', name: 'Brown Owl', imageUrl: '/avatars/owl-brown.png', category: 'animal' },
-  { id: 'penguin', name: 'Penguin', imageUrl: '/avatars/penguin.png', category: 'animal' },
-  { id: 'monkey', name: 'Monkey', imageUrl: '/avatars/monkey.png', category: 'animal' },
-  { id: 'koala', name: 'Koala', imageUrl: '/avatars/koala.png', category: 'animal' },
-  { id: 'tiger', name: 'Tiger', imageUrl: '/avatars/tiger.png', category: 'animal' },
+  { id: 'pixel-cat', name: 'Pixel Cat', imageUrl: '/avatars/pixel-cat.png', category: 'animal' },
+  { id: 'pixel-dog-cool', name: 'Cool Dog', imageUrl: '/avatars/pixel-dog-cool.png', category: 'animal' },
+  { id: 'pixel-frog', name: 'Pixel Frog', imageUrl: '/avatars/pixel-frog.png', category: 'animal' },
+  { id: 'pixel-squirrel', name: 'Pixel Squirrel', imageUrl: '/avatars/pixel-squirrel.png', category: 'animal' },
 
-  // Humans
-  { id: 'boy-blonde', name: 'Blonde Boy', imageUrl: '/avatars/boy-blonde.png', category: 'human' },
-  { id: 'boy-brown', name: 'Brown Hair Boy', imageUrl: '/avatars/boy-brown.png', category: 'human' },
-  { id: 'boy-black', name: 'Black Hair Boy', imageUrl: '/avatars/boy-black.png', category: 'human' },
-  { id: 'girl-blonde', name: 'Blonde Girl', imageUrl: '/avatars/girl-blonde.png', category: 'human' },
-  { id: 'girl-brown', name: 'Brown Hair Girl', imageUrl: '/avatars/girl-brown.png', category: 'human' },
-  { id: 'girl-black', name: 'Black Hair Girl', imageUrl: '/avatars/girl-black.png', category: 'human' },
-  { id: 'girl-pink', name: 'Pink Hair Girl', imageUrl: '/avatars/girl-pink.png', category: 'human' },
-  { id: 'man-beard', name: 'Bearded Man', imageUrl: '/avatars/man-beard.png', category: 'human' },
-  { id: 'woman-redhead', name: 'Red Hair Woman', imageUrl: '/avatars/woman-redhead.png', category: 'human' },
-  { id: 'person-glasses', name: 'Person with Glasses', imageUrl: '/avatars/person-glasses.png', category: 'human' },
+  // Fantasy & Characters
+  { id: 'pixel-ghost', name: 'Pixel Ghost', imageUrl: '/avatars/pixel-ghost.png', category: 'fantasy' },
+  { id: 'pixel-unicorn', name: 'Pixel Unicorn', imageUrl: '/avatars/pixel-unicorn.png', category: 'fantasy' },
+  { id: 'pixel-skull-beige', name: 'Beige Skull', imageUrl: '/avatars/pixel-skull-beige.png', category: 'fantasy' },
+  { id: 'pixel-skull-dark', name: 'Dark Skull', imageUrl: '/avatars/pixel-skull-dark.png', category: 'fantasy' },
+  { id: 'pixel-smiley-neon', name: 'Neon Smiley', imageUrl: '/avatars/pixel-smiley-neon.png', category: 'fantasy' },
+  { id: 'pixel-eyes', name: 'Pixel Eyes', imageUrl: '/avatars/pixel-eyes.png', category: 'fantasy' },
 
-  // Fantasy
-  { id: 'alien-green', name: 'Green Alien', imageUrl: '/avatars/alien-green.png', category: 'fantasy' },
-  { id: 'alien-blue', name: 'Blue Alien', imageUrl: '/avatars/alien-blue.png', category: 'fantasy' },
-  { id: 'alien-purple', name: 'Purple Alien', imageUrl: '/avatars/alien-purple.png', category: 'fantasy' },
-  { id: 'wizard-blue', name: 'Blue Wizard', imageUrl: '/avatars/wizard-blue.png', category: 'fantasy' },
-  { id: 'wizard-purple', name: 'Purple Wizard', imageUrl: '/avatars/wizard-purple.png', category: 'fantasy' },
-  { id: 'dragon-red', name: 'Red Dragon', imageUrl: '/avatars/dragon-red.png', category: 'fantasy' },
-  { id: 'dragon-green', name: 'Green Dragon', imageUrl: '/avatars/dragon-green.png', category: 'fantasy' },
-  { id: 'unicorn-white', name: 'White Unicorn', imageUrl: '/avatars/unicorn-white.png', category: 'fantasy' },
-  { id: 'unicorn-rainbow', name: 'Rainbow Unicorn', imageUrl: '/avatars/unicorn-rainbow.png', category: 'fantasy' },
-  { id: 'fairy-pink', name: 'Pink Fairy', imageUrl: '/avatars/fairy-pink.png', category: 'fantasy' },
-  { id: 'elf-green', name: 'Green Elf', imageUrl: '/avatars/elf-green.png', category: 'fantasy' },
-  { id: 'vampire', name: 'Vampire', imageUrl: '/avatars/vampire.png', category: 'fantasy' },
-  { id: 'ghost-white', name: 'White Ghost', imageUrl: '/avatars/ghost-white.png', category: 'fantasy' },
-  { id: 'zombie', name: 'Zombie', imageUrl: '/avatars/zombie.png', category: 'fantasy' },
+  // Potions & Magic
+  { id: 'pixel-potion-green', name: 'Green Potion', imageUrl: '/avatars/pixel-potion-green.png', category: 'potion' },
+  { id: 'pixel-potion-pink', name: 'Pink Potion', imageUrl: '/avatars/pixel-potion-pink.png', category: 'potion' },
+  { id: 'pixel-potion-purple', name: 'Purple Potion', imageUrl: '/avatars/pixel-potion-purple.png', category: 'potion' },
 
-  // Robots
-  { id: 'robot-silver', name: 'Silver Robot', imageUrl: '/avatars/robot-silver.png', category: 'robot' },
-  { id: 'robot-blue', name: 'Blue Robot', imageUrl: '/avatars/robot-blue.png', category: 'robot' },
-  { id: 'robot-red', name: 'Red Robot', imageUrl: '/avatars/robot-red.png', category: 'robot' },
-  { id: 'robot-green', name: 'Green Robot', imageUrl: '/avatars/robot-green.png', category: 'robot' },
-  { id: 'android', name: 'Android', imageUrl: '/avatars/android.png', category: 'robot' },
-  { id: 'cyborg', name: 'Cyborg', imageUrl: '/avatars/cyborg.png', category: 'robot' },
+  // Icons & Symbols
+  { id: 'pixel-heart', name: 'Pixel Heart', imageUrl: '/avatars/pixel-heart.png', category: 'icon' },
+  { id: 'pixel-star', name: 'Pixel Star', imageUrl: '/avatars/pixel-star.png', category: 'icon' },
+  { id: 'pixel-icon-star', name: 'Star Icon', imageUrl: '/avatars/pixel-icon-star.png', category: 'icon' },
+  { id: 'pixel-shield', name: 'Pixel Shield', imageUrl: '/avatars/pixel-shield.png', category: 'icon' },
+  { id: 'pixel-trophy', name: 'Pixel Trophy', imageUrl: '/avatars/pixel-trophy.png', category: 'icon' },
+  { id: 'pixel-bone', name: 'Pixel Bone', imageUrl: '/avatars/pixel-bone.png', category: 'icon' },
+  { id: 'pixel-question', name: 'Question Mark', imageUrl: '/avatars/pixel-question.png', category: 'icon' },
+  { id: 'pixel-icon-close', name: 'Close Icon', imageUrl: '/avatars/pixel-icon-close.png', category: 'icon' },
+  { id: 'pixel-icon-x', name: 'X Icon', imageUrl: '/avatars/pixel-icon-x.png', category: 'icon' },
 
   // Other
-  { id: 'ninja-black', name: 'Black Ninja', imageUrl: '/avatars/ninja-black.png', category: 'other' },
-  { id: 'ninja-red', name: 'Red Ninja', imageUrl: '/avatars/ninja-red.png', category: 'other' },
-  { id: 'pirate', name: 'Pirate', imageUrl: '/avatars/pirate.png', category: 'other' },
-  { id: 'astronaut', name: 'Astronaut', imageUrl: '/avatars/astronaut.png', category: 'other' },
-  { id: 'superhero-red', name: 'Red Superhero', imageUrl: '/avatars/superhero-red.png', category: 'other' },
-  { id: 'superhero-blue', name: 'Blue Superhero', imageUrl: '/avatars/superhero-blue.png', category: 'other' },
-  { id: 'detective', name: 'Detective', imageUrl: '/avatars/detective.png', category: 'other' },
-  { id: 'chef', name: 'Chef', imageUrl: '/avatars/chef.png', category: 'other' },
-  { id: 'artist', name: 'Artist', imageUrl: '/avatars/artist.png', category: 'other' },
-  { id: 'musician', name: 'Musician', imageUrl: '/avatars/musician.png', category: 'other' },
+  { id: 'pixel-egg', name: 'Pixel Egg', imageUrl: '/avatars/pixel-egg.png', category: 'other' },
+  { id: 'pixel-hourglass', name: 'Hourglass', imageUrl: '/avatars/pixel-hourglass.png', category: 'other' },
+  { id: 'pixel-speech-bubble', name: 'Speech Bubble', imageUrl: '/avatars/pixel-speech-bubble.png', category: 'other' },
 ];
 
 // Helper function to get avatar by ID
